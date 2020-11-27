@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet mc:Ignorable="x14ac" xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac">
+	<dimension ref="{{dimension.[0]}}:{{dimension.[1]}}"/>
+	<sheetViews>
+		<sheetView tabSelected="1" workbookViewId="0">
+			<sheetView workbookViewId="0"/>
+		</sheetView>
+	</sheetViews>
+	<sheetFormatPr defaultRowHeight="15" x14ac:dyDescent="0.25"/>
+	<cols>
+		<col customWidth="1" max="1" min="1" width="68.5703125"/>
+		<col customWidth="1" max="2" min="2" width="12.85546875"/>
+		<col customWidth="1" max="4" min="3" width="24.28515625"/>
+		<col customWidth="1" max="10" min="5" width="17.140625"/>
+		<col customWidth="1" max="11" min="11" width="15.7109375"/>
+		<col customWidth="1" max="13" min="12" width="9.42578125"/>
+	</cols>
+	<sheetData>
+		{{#each content}}
+			<row customHeight="1" ht="45.75" r="1" spans="{{this.spans.[0]}}:{{this.spans.[1]}}" x14ac:dyDescent="0.25">
+				{{#each this.childs}}
+					<c r="{{this.id}}" s="<!?>"{{#if this.isLink}} t="s"{{/if}}><v>{{this.value}}</v></c>
+				{{/each}}
+			</row>
+		{{/each}}
+	</sheetData>
+	<pageMargins bottom="0.75" footer="0.3" header="0.3" left="0.7" right="0.7" top="0.75"/>
+	<pageSetup horizontalDpi="300" orientation="portrait" r:id="rId1" verticalDpi="300"/>
+</worksheet>

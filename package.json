@@ -1,0 +1,23 @@
+{
+  "name": "xlsx-builder",
+  "version": "1.0.0",
+  "description": "Create xlsx tables with custom styles",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "xlsx",
+    "excel"
+  ],
+  "author": "ReMonkey",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "archiver": "^4.0.1",
+    "clone": "^2.1.2",
+    "handlebars": "^4.7.6"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
+}

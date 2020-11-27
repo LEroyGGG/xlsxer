@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet mc:Ignorable="x14ac x16r2" xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac" xmlns:x16r2="http://schemas.microsoft.com/office/spreadsheetml/2015/02/main">
+	<fonts count="{{styles.fonts.length}}" x14ac:knownFonts="1">
+		{{#each styles.fonts}}
+			<font>
+				<sz val="{{this.font-size}}"/>
+				<color theme="1"/>
+				<name val="{{this.font-family}}"/>
+				<family val="2"/>
+				<charset val="204"/>
+				<scheme val="minor"/>
+			</font>
+		{{/each}}
+		<font>
+			<sz val="11"/>
+			<color theme="1"/>
+			<name val="Calibri"/>
+			<family val="2"/>
+			<scheme val="minor"/>
+		</font>
+		<font>
+			<sz val="11"/>
+			<color theme="1"/>
+			<name val="Calibri"/>
+			<family val="2"/>
+			<charset val="204"/>
+			<scheme val="minor"/>
+		</font>
+		<font>
+			<sz val="11"/>
+			<color theme="0"/>
+			<name val="Calibri"/>
+			<family val="2"/>
+			<charset val="204"/>
+			<scheme val="minor"/>
+		</font>
+	</fonts>
+	<fills count="9">
+		<fill>
+			<patternFill patternType="none"/>
+		</fill>
+		<fill>
+			<patternFill patternType="gray125"/>
+		</fill>
+		<fill>
+			<patternFill patternType="solid">
+				<fgColor rgb="FF99F1A9"/>
+				<bgColor indexed="64"/>
+			</patternFill>
+		</fill>
+		<fill>
+			<patternFill patternType="solid">
+				<fgColor rgb="FFA5CDE2"/>
+				<bgColor indexed="64"/>
+			</patternFill>
+		</fill>
+		<fill>
+			<patternFill patternType="solid">
+				<fgColor rgb="FFFFEB9C"/>
+				<bgColor indexed="64"/>
+			</patternFill>
+		</fill>
+		<fill>
+			<patternFill patternType="solid">
+				<fgColor rgb="FFFD8C9A"/>
+				<bgColor indexed="64"/>
+			</patternFill>
+		</fill>
+		<fill>
+			<patternFill patternType="solid">
+				<fgColor rgb="FF6F4F9F"/>
+				<bgColor indexed="64"/>
+			</patternFill>
+		</fill>
+		<fill>
+			<patternFill patternType="solid">
+				<fgColor theme="0" tint="-4.9989318521683403E-2"/>
+				<bgColor indexed="64"/>
+			</patternFill>
+		</fill>
+		<fill>
+			<patternFill patternType="solid">
+				<fgColor rgb="FFFF0000"/>
+				<bgColor indexed="64"/>
+			</patternFill>
+		</fill>
+	</fills>
+	<borders count="2">
+		<border>
+			<left/>
+			<right/>
+			<top/>
+			<bottom/>
+			<diagonal/>
+		</border>
+		<border>
+			<left style="thin">
+				<color indexed="64"/>
+			</left>
+			<right style="thin">
+				<color indexed="64"/>
+			</right>
+			<top style="thin">
+				<color indexed="64"/>
+			</top>
+			<bottom style="thin">
+				<color indexed="64"/>
+			</bottom>
+			<diagonal/>
+		</border>
+	</borders>
+	<cellStyleXfs count="2">
+		<xf borderId="0" fillId="0" fontId="0" numFmtId="0"/>
+		<xf borderId="0" fillId="0" fontId="1" numFmtId="0"/>
+	</cellStyleXfs>
+	<cellXfs count="15">
+		<xf borderId="0" fillId="0" fontId="0" numFmtId="0" xfId="0"/>
+		<xf applyAlignment="1" applyBorder="1" borderId="1" fillId="0" fontId="1" numFmtId="0" xfId="1">
+			<alignment vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyNumberFormat="1" borderId="1" fillId="0" fontId="1" numFmtId="1" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="2" fontId="1" numFmtId="1" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="2" fontId="1" numFmtId="9" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="3" fontId="1" numFmtId="1" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="3" fontId="1" numFmtId="9" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="4" fontId="1" numFmtId="1" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="4" fontId="1" numFmtId="9" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" borderId="1" fillId="5" fontId="1" numFmtId="0" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyFont="1" borderId="1" fillId="6" fontId="2" numFmtId="0" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyFont="1" borderId="1" fillId="6" fontId="2" numFmtId="0" xfId="1">
+			<alignment horizontal="center" vertical="center" wrapText="1"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" borderId="1" fillId="7" fontId="1" numFmtId="0" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="5" fontId="1" numFmtId="9" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+		<xf applyAlignment="1" applyBorder="1" applyFill="1" applyNumberFormat="1" borderId="1" fillId="8" fontId="1" numFmtId="9" xfId="1">
+			<alignment horizontal="center" vertical="center"/>
+		</xf>
+	</cellXfs>
+	<cellStyles count="2">
+		<cellStyle builtinId="0" name="Normal" xfId="0"/>
+		<cellStyle name="Normal 2" xfId="1"/>
+	</cellStyles>
+	<dxfs count="0"/>
+	<tableStyles count="0" defaultPivotStyle="PivotStyleLight16" defaultTableStyle="TableStyleMedium2"/>
+	<colors>
+		<mruColors>
+			<color rgb="FFFD8C9A"/>
+			<color rgb="FF6F4F9F"/>
+			<color rgb="FF886AB5"/>
+			<color rgb="FFFFEB9C"/>
+			<color rgb="FFA5CDE2"/>
+			<color rgb="FFC6EFCE"/>
+			<color rgb="FF99F1A9"/>
+		</mruColors>
+	</colors>
+	<extLst>
+		<ext uri="{EB79DEF2-80B8-43e5-95BD-54CBDDF9020C}" xmlns:x14="http://schemas.microsoft.com/office/spreadsheetml/2009/9/main">
+			<x14:slicerStyles defaultSlicerStyle="SlicerStyleLight1"/>
+		</ext>
+		<ext uri="{9260A510-F301-46a8-8635-F512D64BE5F5}" xmlns:x15="http://schemas.microsoft.com/office/spreadsheetml/2010/11/main">
+			<x15:timelineStyles defaultTimelineStyle="TimeSlicerStyleLight1"/>
+		</ext>
+	</extLst>
+</styleSheet>

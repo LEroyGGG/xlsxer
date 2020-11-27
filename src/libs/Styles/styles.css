@@ -1,0 +1,30 @@
+::rows {
+  height: 25px;
+}
+
+::row(1) {
+  position: fixed;
+  height: 36px;
+}
+
+::cols {
+  width: 50px;
+}
+
+::cells {
+  display: text;
+  font-family: 'Calibri';
+  vertical-align: middle;
+  text-align: center;
+  font-size: 14px;
+  color: #111;
+}
+
+STATE_100, STATE_200, STATE_300, STATE_400, STATE_500, STATE_ERROR {
+  border: #111 thin;
+  background-color: transparent;
+}
+
+URL {
+  display: link;
+}
