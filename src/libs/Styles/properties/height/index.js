@@ -2,7 +2,7 @@ const { isNumber, isFiniteNumber } = require('../../../../utils/types');
 
 const self = {};
 
-const reg = /^\d+(px)?$/i;
+const reg = /^\s*\d+(px)?\s*$/i;
 
 self.validate = value => {
   if (isNumber(value)) {

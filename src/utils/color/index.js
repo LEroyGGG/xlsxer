@@ -1,20 +1,14 @@
 const { isString } = require('../types');
 
+const names = require('./list');
 const utils = require('./utils');
 
 class Color {
   constructor(value) {
-    this._value = isString(value) ? value.trim() : value;
+    this._initial = value;
 
-    this.value = this.parse();
-  }
-
-  validate() {
-    return utils.validate(this._value);
-  }
-
-  parse() {
-    return utils.parse(this._value);
+    this.value = utils.parse(value);
+    this.isValid = utils.validate(value);
   }
 
   hex() {
@@ -23,13 +17,17 @@ class Color {
     return '#' + list.join('').toUpperCase();
   }
 
+  hexAlpha() {
+    const list = this.value.map(v => (v < 16 ? '0' : '') + v.toString(16));
+
+    return '#FF' + list.join('').toUpperCase();
+  }
+
   rgb() {
     return `rgb(${this.value.join(',')})`;
   }
 }
 
-const color = function color(value) {
-  return new Color(value);
-};
+color.names = names;
 
-module.exports = Object.assign(color, utils);
+module.exports = Object.assign(Color, utils);

@@ -1,4 +1,4 @@
-const Color = require('../../../../utils/color');
+const color = require('../../../../utils/color');
 
 const self = {};
 

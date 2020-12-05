@@ -5,13 +5,17 @@ const list = require('./list');
 const self = {};
 
 const check_hex = /^#([a-f\d]{3}|[a-f\d]{6})$/i;
+const check_hexAlpha = /^#([a-f\d]{4}|[a-f\d]{8})$/i;
 const match_rgb = /^rgb\(\s*([\d]{1,3})\s*,\s*([\d]{1,3})\s*,\s*([\d]{1,3})\s*\)$/;
+const match_rgbAlpha = /^rgba\(\s*([\d]{1,3})\s*,\s*([\d]{1,3})\s*,\s*([\d]{1,3})\s*,\s*([01]?(?\.\d{1,})?)\s*\)$/;
 
 self.validate = function validateColor(value) {
   let valid = self.validate.named(value);
 
   valid = valid || self.validate.hex(value);
+  valid = valid || self.validate.hexAlpha(value);
   valid = valid || self.validate.rgb(value);
+  valid = valid || self.validate.rgbAlpha(value);
 
   return valid;
 };
@@ -30,6 +34,14 @@ self.validate.hex = value => {
   return check_hex.test(value);
 };
 
+self.validate.hexAlpha = value => {
+  if (!isString(value)) return false;
+
+  value = value.trim();
+
+  return check_hexAlpha.test(value);
+};
+
 self.validate.rgb = value => {
   if (!isString(value) && !isArray(value)) return false;
 
@@ -46,6 +58,24 @@ self.validate.rgb = value => {
   const [r, g, b] = value;
 
   return r <= 255 && g <= 255 && b <= 255;
+};
+
+self.validate.rgbAlpha = value => {
+  if (!isString(value) && !isArray(value)) return false;
+
+  if (isString(value)) {
+    value = value.trim();
+
+    const m = match_rgbAlpha.exec(value);
+
+    if (!m) return false;
+
+    value = [+m[1], +m[2], +m[3], +m[4]];
+  }
+
+  const [r, g, b, a] = value;
+
+  return r <= 255 && g <= 255 && b <= 255 && a <= 1;
 };
 
 self.parse = function parseColor(value) {
