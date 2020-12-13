@@ -1,0 +1,14 @@
+const self = {};
+
+self.MARK_FILE_START = Symbol('MARK_FILE_START');
+self.MARK_FILE_END = Symbol('MARK_FILE_END');
+
+self.TYPE_FILE_START = 'TYPE_FILE_START';
+self.TYPE_FILE_END = 'TYPE_FILE_END';
+
+self.TYPE_SELECTOR = 'TYPE_SELECTOR';
+self.TYPE_PROPERTIES = 'TYPE_PROPERTIES';
+self.TYPE_BLOCK_START = 'TYPE_BLOCK_START';
+self.TYPE_BLOCK_END = 'TYPE_BLOCK_END';
+
+module.exports = self;

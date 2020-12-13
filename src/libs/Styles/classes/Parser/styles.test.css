@@ -1,0 +1,26 @@
+::defaults {
+  width: 50px;
+  height: 25px;
+  display: text;
+  font-family: 'Calibri';
+  vertical-align: middle;
+  text-align: center;
+  font-size: 14px;
+  color: #111;
+}
+
+::row(1) {
+  position: fixed;
+  height: 36px;
+}
+
+STATE_100, STATE_200, STATE_300, STATE_400, STATE_500, STATE_ERROR {
+  border: #111 thick;
+  background-color: transparent;
+}
+
+URL {
+  display: link;
+}
+
+EMPTY {}
