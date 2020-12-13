@@ -12,6 +12,12 @@ self.validate = value => {
   return reg.test(value);
 };
 
-self.transform = value => isNumber(value) ? value : +value.replace(/[^\d]/g, '');
+self.transform = value => {
+  const size = isNumber(value) ? value : +value.replace(/[^\d]/g, '');
+
+  return {
+    'height': size
+  };
+};
 
 module.exports = self;

@@ -8,6 +8,6 @@ describe("Styles: display property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('center')).toEqual('center');
+    expect(self.transform('center')).toEqual({ 'text-align': 'center' });
   });
 });

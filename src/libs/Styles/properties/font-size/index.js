@@ -12,6 +12,12 @@ self.validate = value => {
   return reg.test(value);
 };
 
-self.transform = value => isNumber(value) ? value : +value.replace(/^\s+|[^\d]|\s+$/g, '');
+self.transform = value => {
+  const size = isNumber(value) ? value : +value.replace(/^\s+|[^\d]|\s+$/g, '');
+
+  return {
+    'font-size': size
+  };
+};
 
 module.exports = self;

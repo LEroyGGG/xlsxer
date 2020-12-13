@@ -4,6 +4,12 @@ const self = {};
 
 self.validate = value => (new Color(value)).isValid;
 
-self.transform = value => (new Color(value)).hexAlphaReversed();
+self.transform = value => {
+  const color = new Color(value);
+
+  return {
+    'background-color': color.hexAlphaReversed()
+  };
+};
 
 module.exports = self;

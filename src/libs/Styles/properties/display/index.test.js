@@ -8,6 +8,6 @@ describe("Styles: display property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('percent')).toEqual('percent');
+    expect(self.transform('percent')).toEqual({ 'display': 'percent' });
   });
 });

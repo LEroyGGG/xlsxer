@@ -15,7 +15,7 @@ describe("Styles: font-size property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('123px')).toEqual(123);
-    expect(self.transform(123)).toEqual(123);
+    expect(self.transform('123px')).toEqual({ 'height': 123 });
+    expect(self.transform(123)).toEqual({ 'height': 123 });
   });
 });

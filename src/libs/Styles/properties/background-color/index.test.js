@@ -12,8 +12,8 @@ describe("Styles: background-color property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('yellowgreen')).toEqual('#FF9ACD32');
-    expect(self.transform([154, 205, 50])).toEqual('#FF9ACD32');
-    expect(self.transform('rgb(154, 205, 50)')).toEqual('#FF9ACD32');
+    expect(self.transform('yellowgreen')).toEqual({ 'background-color': '#FF9ACD32' });
+    expect(self.transform([154, 205, 50])).toEqual({ 'background-color': '#FF9ACD32' });
+    expect(self.transform('rgb(154, 205, 50)')).toEqual({ 'background-color': '#FF9ACD32' });
   });
 });

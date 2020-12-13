@@ -3,18 +3,38 @@ const Color = require('../../../../utils/color');
 const self = {};
 
 // TODO: Add other border styles
-const list = ['thick'];
+const list = ['none', 'thick', 'medium'];
+
+const reg_clean_types = new RegExp('\\b(' + list.join('|') + ')\\b', 'ig');
 
 self.validate = value => {
-  // TODO: Improove validator
-  const parts = value.split(' ');
+  let cleaned = value.replace(reg_clean_types, '').trim();
 
-  const style = parts.pop();
-  const color = parts.join(' ');
+  const color = new Color(cleaned);
 
-  return list.includes(style) && (new Color(color)).isValid;
+  if (!color.isValid) return false;
+
+  cleaned = value.replace(cleaned, '').trim();
+
+  return list.includes(cleaned);
 };
 
-self.transform = value => (new Color(value)).hexAlphaReversed();
+self.transform = value => {
+  let cleaned = value.replace(reg_clean_types, '').trim();
+
+  const color = (new Color(cleaned)).hexAlphaReversed();
+  const style = value.replace(cleaned, '').trim();
+
+  return {
+    'border-top-color': color,
+    'border-left-color': color,
+    'border-right-color': color,
+    'border-bottom-color': color,
+    'border-top-style': style,
+    'border-left-style': style,
+    'border-right-style': style,
+    'border-bottom-style': style,
+  };
+};
 
 module.exports = self;

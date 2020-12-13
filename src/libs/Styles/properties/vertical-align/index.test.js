@@ -8,6 +8,6 @@ describe("Styles: display property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('top')).toEqual('top');
+    expect(self.transform('top')).toEqual({ 'vertical-align': 'top' });
   });
 });

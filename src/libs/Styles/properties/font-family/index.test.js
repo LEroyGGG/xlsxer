@@ -10,6 +10,6 @@ describe("Styles: font-family property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('Calibri')).toEqual('Calibri');
+    expect(self.transform('Calibri')).toEqual({ 'font-family': 'Calibri' });
   });
 });

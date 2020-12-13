@@ -13,8 +13,8 @@ describe("Styles: color property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('yellowgreen')).toEqual('#9ACD32');
-    expect(self.transform([154, 205, 50])).toEqual('#9ACD32');
-    expect(self.transform('rgb(154, 205, 50)')).toEqual('#9ACD32');
+    expect(self.transform('yellowgreen')).toEqual({ 'color': '#FF9ACD32' });
+    expect(self.transform([154, 205, 50])).toEqual({ 'color': '#FF9ACD32' });
+    expect(self.transform('rgb(154, 205, 50)')).toEqual({ 'color': '#FF9ACD32' });
   });
 });
