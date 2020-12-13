@@ -20,4 +20,5 @@ module.exports = {
   'height': require('./properties/height'),
   'text-align': require('./properties/text-align'),
   'vertical-align': require('./properties/vertical-align'),
+  'wifth': require('./properties/wifth'),
 };
