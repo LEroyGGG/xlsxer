@@ -18,7 +18,8 @@ module.exports = {
   'font-family': require('./properties/font-family'),
   'font-size': require('./properties/font-size'),
   'height': require('./properties/height'),
+  'position': require('./properties/position'),
   'text-align': require('./properties/text-align'),
   'vertical-align': require('./properties/vertical-align'),
-  'wifth': require('./properties/wifth'),
+  'width': require('./properties/width'),
 };

@@ -2,7 +2,9 @@ const self = require('.');
 
 describe("Styles: font-family property", () => {
   test("validate", () => {
-    expect(self.validate('Calibri')).toEqual(true);
+    expect(self.validate(`Calibri`)).toEqual(true);
+    expect(self.validate(`'Calibri'`)).toEqual(true);
+    expect(self.validate(`"Calibri"`)).toEqual(true);
 
     expect(self.validate(null)).toEqual(false);
     expect(self.validate(123)).toEqual(false);
@@ -10,6 +12,8 @@ describe("Styles: font-family property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('Calibri')).toEqual({ 'font-family': 'Calibri' });
+    expect(self.transform(`Calibri`)).toEqual({ 'font-family': 'Calibri' });
+    expect(self.transform(`'Calibri'`)).toEqual({ 'font-family': 'Calibri' });
+    expect(self.transform(`"Calibri"`)).toEqual({ 'font-family': 'Calibri' });
   });
 });

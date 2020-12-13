@@ -1,12 +1,12 @@
 const self = {};
 
-const list = ['text', 'percent', 'link'];
+const list = ['static', 'fixed'];
 
 self.validate = value => list.includes(value);
 
 self.transform = value => {
   return {
-    'display': value
+    'position': value
   };
 };
 
