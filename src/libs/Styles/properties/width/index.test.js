@@ -1,6 +1,6 @@
 const self = require('.');
 
-describe("Styles: height property", () => {
+describe("Styles: width property", () => {
   test("validate", () => {
     expect(self.validate(123)).toEqual(true);
     expect(self.validate('123px')).toEqual(true);
@@ -15,7 +15,7 @@ describe("Styles: height property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('123px')).toEqual({ 'height': 123 });
-    expect(self.transform(123)).toEqual({ 'height': 123 });
+    expect(self.transform('123px')).toEqual({ 'width': 123 });
+    expect(self.transform(123)).toEqual({ 'width': 123 });
   });
 });
