@@ -6,13 +6,14 @@ describe("Utils: color utils", () => {
     expect(self.validate([13, 63, 185])).toEqual(true);
     expect(self.validate('rgb(13, 63, 185)')).toEqual(true);
     expect(self.validate('#17afbc')).toEqual(true);
+    expect(self.validate('#17afbc11')).toEqual(true);
 
     expect(self.validate(null)).toEqual(false);
     expect(self.validate('qwerty')).toEqual(false);
     expect(self.validate([13, 63, 300])).toEqual(false);
     expect(self.validate('rgb(13, 63, 300)')).toEqual(false);
     expect(self.validate('#17gfbc')).toEqual(false);
-    expect(self.validate('#17afbc11')).toEqual(false);
+    expect(self.validate('#17afbc11b')).toEqual(false);
   });
 
   test("validate named", () => {
@@ -43,22 +44,23 @@ describe("Utils: color utils", () => {
   });
 
   test("parse", () => {
-    expect(self.parse('sienna')).toEqual([160, 82, 45]);
-    expect(self.parse([160, 82, 45])).toEqual([160, 82, 45]);
-    expect(self.parse('rgb(160, 82, 45)')).toEqual([160, 82, 45]);
-    expect(self.parse('#A0522D')).toEqual([160, 82, 45]);
+    expect(self.parse('sienna')).toEqual([160, 82, 45, 1]);
+    expect(self.parse([160, 82, 45])).toEqual([160, 82, 45, 1]);
+    expect(self.parse('rgb(160, 82, 45)')).toEqual([160, 82, 45, 1]);
+    expect(self.parse('#A0522D')).toEqual([160, 82, 45, 1]);
   });
 
   test("parse named", () => {
-    expect(self.parse('sienna')).toEqual([160, 82, 45]);
+    expect(self.parse('sienna')).toEqual([160, 82, 45, 1]);
   });
 
   test("parse hex", () => {
-    expect(self.parse('#A0522D')).toEqual([160, 82, 45]);
+    expect(self.parse('#A0522D')).toEqual([160, 82, 45, 1]);
   });
 
   test("parse rgb", () => {
-    expect(self.parse([160, 82, 45])).toEqual([160, 82, 45]);
-    expect(self.parse('rgb(160, 82, 45)')).toEqual([160, 82, 45]);
+    expect(self.parse([160, 82, 45])).toEqual([160, 82, 45, 1]);
+    expect(self.parse('rgb(160, 82, 45)')).toEqual([160, 82, 45, 1]);
+    expect(self.parse('rgba(160, 82, 45, 0.4)')).toEqual([160, 82, 45, 0.4]);
   });
 });

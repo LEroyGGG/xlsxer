@@ -25,33 +25,33 @@ describe("Utils: color", () => {
     expect(r === 255 && g === 0 && b === 0).toEqual(true);
   });
 
-  test("Create instance: named error", () => {
-    try {
-      new Color('unknown');
-    } catch (e) {
-      return expect('Color named Error').toEqual('Color named Error');
-    }
+  test("Create instance: invalid color name", () => {
+    const color = new Color('unknown');
 
-    expect('Color named success').toEqual('Color named Error');
+    expect(color.isValid).toEqual(false);
   });
 
-  test("Create instance: hex error", () => {
-    try {
-      new Color('#ff0g00');
-    } catch (e) {
-      return expect('Color hex Error').toEqual('Color hex Error');
-    }
+  test("Create instance: invalid color hex", () => {
+    const color = new Color('ff0g00');
 
-    expect('Color hex success').toEqual('Color hex Error');
+    expect(color.isValid).toEqual(false);
   });
 
-  test("Create instance: rgb error", () => {
-    try {
-      new Color('rgb(256, 0, 0)');
-    } catch (e) {
-      return expect('Color rgb Error').toEqual('Color rgb Error');
-    }
+  test("Create instance: invalid color hexAlpha", () => {
+    const color = new Color('ff0000gf');
 
-    expect('Color rgb success').toEqual('Color rgb Error');
+    expect(color.isValid).toEqual(false);
+  });
+
+  test("Create instance: invalid color rgb", () => {
+    const color = new Color('rgb(256, 0, 0)');
+
+    expect(color.isValid).toEqual(false);
+  });
+
+  test("Create instance: invalid color rgbAlpha", () => {
+    const color = new Color('rgb(255, 0, 0, 2)');
+
+    expect(color.isValid).toEqual(false);
   });
 });

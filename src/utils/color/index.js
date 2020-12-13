@@ -3,6 +3,14 @@ const { isString } = require('../types');
 const names = require('./list');
 const utils = require('./utils');
 
+const int_16 = num => {
+  num = Math.round(num);
+
+  const prefix = num < 16 ? '0' : '';
+
+  return (prefix + num.toString(16)).toUpperCase();
+};
+
 class Color {
   constructor(value) {
     this._initial = value;
@@ -12,22 +20,42 @@ class Color {
   }
 
   hex() {
-    const list = this.value.map(v => (v < 16 ? '0' : '') + v.toString(16));
+    const list = this.value.map(int_16);
 
-    return '#' + list.join('').toUpperCase();
+    return '#' + list.join('');
   }
 
   hexAlpha() {
-    const list = this.value.map(v => (v < 16 ? '0' : '') + v.toString(16));
+    let color = this.value.slice(0, 3);
+    let alpha = this.value[3];
 
-    return '#FF' + list.join('').toUpperCase();
+    color = color.map(int_16);
+    alpha = int_16(alpha * 255);
+
+    return '#' + color.join('') + alpha;
+  }
+
+  hexAlphaReversed() {
+    let color = this.value.slice(0, 3);
+    let alpha = this.value[3];
+
+    color = color.map(int_16);
+    alpha = int_16(alpha * 255);
+
+    return '#' + alpha + color.join('');
   }
 
   rgb() {
-    return `rgb(${this.value.join(',')})`;
+    let color = this.value.slice(0, 3);
+
+    return `rgb(${color.join(',')})`;
+  }
+
+  rgbAlpha() {
+    return `rgba(${this.value.join(',')})`;
   }
 }
 
-color.names = names;
+Color.names = names;
 
 module.exports = Object.assign(Color, utils);

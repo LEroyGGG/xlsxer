@@ -10,11 +10,11 @@ self.validate = value => {
   const parts = value.split(' ');
 
   const style = parts.pop();
-  const color = pars.join(' ');
+  const color = parts.join(' ');
 
-  return list.includes(style) && new Color(color).isValid;
+  return list.includes(style) && (new Color(color)).isValid;
 };
 
-self.transform = value => new Color(value).hexAlpha();
+self.transform = value => (new Color(value)).hexAlphaReversed();
 
 module.exports = self;

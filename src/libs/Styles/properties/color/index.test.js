@@ -1,13 +1,14 @@
 const self = require('.');
 
-describe("Styles: Color property", () => {
+describe("Styles: color property", () => {
   test("validate", () => {
     expect(self.validate('silver')).toEqual(true);
     expect(self.validate('#FFF')).toEqual(true);
+    expect(self.validate('#FFFF')).toEqual(true);
     expect(self.validate('rgb(10, 15, 30)')).toEqual(true);
 
     expect(self.validate('test')).toEqual(false);
-    expect(self.validate('#FFFF')).toEqual(false);
+    expect(self.validate('#FFFFF')).toEqual(false);
     expect(self.validate('rgb(510, 15, 30)')).toEqual(false);
   });
 

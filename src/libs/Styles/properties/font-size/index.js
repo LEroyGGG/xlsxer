@@ -2,7 +2,7 @@ const { isNumber, isFiniteNumber } = require('../../../../utils/types');
 
 const self = {};
 
-const reg = /^\d+(px)?$/i;
+const reg = /^\s*\d+(px)?\s*$/i;
 
 self.validate = value => {
   if (isNumber(value)) {
@@ -12,6 +12,6 @@ self.validate = value => {
   return reg.test(value);
 };
 
-self.transform = value => isNumber(value) ? value : +value.replace(/[^\d]/g, '');
+self.transform = value => isNumber(value) ? value : +value.replace(/^\s+|[^\d]|\s+$/g, '');
 
 module.exports = self;
