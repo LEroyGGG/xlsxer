@@ -1,6 +1,6 @@
 const self = require('.');
 
-describe("Styles: border-color property", () => {
+describe("Styles: border property", () => {
   test("validate", () => {
     expect(self.validate('silver thick')).toEqual(true);
     expect(self.validate('#FFF thick')).toEqual(true);

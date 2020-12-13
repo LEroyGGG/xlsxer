@@ -37,4 +37,10 @@ self.transform = value => {
   };
 };
 
+self.validateColor = color => (new Color(color)).isValid;
+self.validateStyle = style => list.includes(style);
+
+self.transformColor = color => (new Color(color)).hexAlphaReversed();
+self.transformStyle = style => style;
+
 module.exports = self;
