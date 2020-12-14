@@ -16,10 +16,10 @@ describe("Styles: border property", () => {
 
   test("transform", () => {
     expect(self.transform('yellowgreen thick')).toEqual({
-      'border-top-color': '#FF9ACD32',
-      'border-left-color': '#FF9ACD32',
-      'border-right-color': '#FF9ACD32',
-      'border-bottom-color': '#FF9ACD32',
+      'border-top-color': 'FF9ACD32',
+      'border-left-color': 'FF9ACD32',
+      'border-right-color': 'FF9ACD32',
+      'border-bottom-color': 'FF9ACD32',
       'border-top-style': 'thick',
       'border-left-style': 'thick',
       'border-right-style': 'thick',

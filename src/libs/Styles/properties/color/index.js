@@ -8,7 +8,7 @@ self.transform = value => {
   const color = new Color(value);
 
   return {
-    'color': color.hexAlphaReversed()
+    'color': color.hexExcel()
   };
 };
 

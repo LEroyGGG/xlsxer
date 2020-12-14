@@ -45,6 +45,16 @@ class Color {
     return '#' + alpha + color.join('');
   }
 
+  hexExcel() {
+    let color = this.value.slice(0, 3);
+    let alpha = this.value[3];
+
+    color = color.map(int_16);
+    alpha = int_16(alpha * 255);
+
+    return alpha + color.join('');
+  }
+
   rgb() {
     let color = this.value.slice(0, 3);
 
