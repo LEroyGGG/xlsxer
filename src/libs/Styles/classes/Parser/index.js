@@ -1,3 +1,5 @@
+const path = require('path');
+
 const { readFile } = require('../../../../utils/fs');
 
 const {
@@ -14,14 +16,30 @@ const {
 const matchers = require('./matchers');
 
 class Parser {
-  constructor(path) {
-    this._src = path;
+  constructor() {
+    this._data = null;
 
     this.result = null;
   }
 
+  readFile(...src) {
+    this._path = path.resolve(...src);
+
+    this._data = readFile(this._path);
+
+    return this;
+  }
+
+  readInline(str) {
+    this._path = '<inline>'
+
+    this._data = Promise.resolve(str);
+
+    return this;
+  }
+
   async process() {
-    const data = await readFile(this._src);
+    const data = await this._data;
 
     const parts = this.split(data);
     const blocks = this.match(parts);
@@ -58,24 +76,34 @@ class Parser {
     blocks = blocks.slice();
 
     while (blocks.length) {
-      const selector = blocks.shift().items;
+      const selectors = blocks.shift().items;
       const properties = blocks[0] && blocks[0].type === TYPE_PROPERTIES ? blocks.shift().items : [];
 
-      items.push({ selector, properties });
+      items.push({ selectors, properties });
     }
 
     return items;
   }
 
   createError(text) {
-    return new Error(`An error appear in styles:\n  at: ${this._src}\n  ${text}`);
+    return new Error(`An error appear in styles:\n  at: ${this._path}\n  ${text}`);
   }
 }
 
-Parser.process = src => {
-  const parser = new Parser(src);
+Parser.readFile = (...src) => {
+  const parser = new Parser();
 
-  return parser.process();
+  parser.readFile(...src);
+
+  return parser;
+};
+
+Parser.readInline = str => {
+  const parser = new Parser();
+
+  parser.readInline(str);
+
+  return parser;
 };
 
 module.exports = Parser;

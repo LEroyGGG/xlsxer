@@ -7,6 +7,8 @@
   text-align: center;
   font-size: 14px;
   color: #111;
+  border: none;
+  background: transparent;
 }
 
 ::row(1) {
@@ -15,10 +17,16 @@
 }
 
 STATE_100, STATE_200, STATE_300, STATE_400, STATE_500, STATE_ERROR {
-  border: #111 thin;
+  border: #111 thick;
   background-color: transparent;
+}
+
+STATE_ERROR {
+  background-color: red;
 }
 
 URL {
   display: link;
 }
+
+EMPTY {}

@@ -131,7 +131,6 @@ describe("Parser matches", () => {
 
       expect(block).toEqual({ type: TYPE_PROPERTIES, items: [{ name: 'color', value: '#000' }, { name: 'font-size', value: '15px' }] });
     } catch (e) {
-      console.log(e);
       expect('TYPE_PROPERTIES').toEqual('Match throw an error');
     }
 
