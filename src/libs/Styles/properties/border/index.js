@@ -45,6 +45,8 @@ self.transform = value => {
   };
 };
 
+self.inheritable = true;
+
 self.validateColor = color => (new Color(color)).isValid;
 self.validateStyle = style => list.includes(style);
 

@@ -1,65 +1,60 @@
-const types = require('../../../../utils/types');
-const { pick } = require('../../../../utils/common');
+const Parser = require('./classes/Parser');
+const Rules = require('./classes/Rules');
 
 const properties = require('./properties');
 
 class Styles {
   constructor() {
-    this._defaults = {};
-    this._list = {};
-
-    this.items = {
-      fonts: [],
-    };
+    this._rules = new Rules();
   }
 
-  addGlobal(values) {
-    if (!types.isObject(values)) {
-      throw new Error(`Argument values should be simple object. Passed type "${types(values)}"`);
-    }
+  async addInline(str) {
+    const items = await Parser.readInline(str).process();
 
-    this.validate(values);
-
-    Object.assign(this._defaults, values);
+    this.setRules(items);
   }
 
-  add(name, values) {
-    if (!types.isObject(values)) {
-      throw new Error(`Argument values should be simple object. Passed type "${types(values)}"`);
-    }
+  async addFile(...src) {
+    const items = await Parser.readFile(...src).process();
 
-    if (name in this._list) {
-      throw new Error(`Duplication of "${name}" in styles list`);
-    }
-
-    this.validate(values);
-
-
-
-    this._list[name] = values;
+    this.setRules(items);
   }
 
-  validate(values) {
-    for (let prop in values) {
-      if (!values.hasOwnProperty(name)) continue;
-
-      if (!properties[prop]) throw new Error(`Unknown style property "${prop}"`);
-
-      const isValid = properties[prop].validate(values[prop]);
-
-      if (!isValid) return false;
-    }
-
-    return true;
+  setRules(items) {
+    items.forEach(item => this.setRule(item));
   }
 
-  split(values) {
-    const font = pick(['font-size', 'font-family'], values);
-    const _font = pick(['font-size', 'font-family'], this._defaults);
+  setRule(item) {
+    const values = item.properties.reduce((result, item) => {
+      const { name, value } = item;
 
-    return {
-      font: { ..._font, ...font },
-    };
+      return Object.assign(result, properties[name].transform(value));
+    }, {});
+
+    item.selectors.forEach(selector => this.updateSelector(selector, values));
+  }
+
+  updateSelector(selector, values) {
+    switch (selector) {
+      case Rules.SELECTOR_DEFAULT:
+        return this._rules._defaults.set(values);
+      default:
+        return this._rules.get(selector).set(values);
+    }
+  }
+
+  collect() {
+    return this._rules.collect();
+  }
+
+  combine() {
+    const combines = this._rules.combineProperties();
+    const ids = this._rules.combineStyles();
+
+    this.STYLES = combines;
+    this.IDS = ids;
+
+    return { ids, combines };
   }
 }
 

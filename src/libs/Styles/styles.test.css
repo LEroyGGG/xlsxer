@@ -7,6 +7,8 @@
   text-align: center;
   font-size: 14px;
   color: #111;
+  /* test comment */
+  /* color: red; */
   border: none;
   background: transparent;
 }
@@ -18,15 +20,32 @@
 
 STATE_100, STATE_200, STATE_300, STATE_400, STATE_500, STATE_ERROR {
   border: #111 thick;
-  background-color: transparent;
+}
+
+STATE_100 {
+  background-color: #8c72b2;
+}
+
+STATE_200 {
+  background-color: #46a0df;
+}
+
+STATE_300 {
+  background-color: #dfab46;
+}
+
+STATE_400, STATE_500, STATE_ERROR {
+  background-color: #df4654;
 }
 
 STATE_ERROR {
-  background-color: red;
+  background-color: #ac0000;
 }
 
 URL {
   display: link;
+  text-align: left;
+  border: #111 thick;
 }
 
 EMPTY {}

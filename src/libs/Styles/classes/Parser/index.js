@@ -41,12 +41,17 @@ class Parser {
   async process() {
     const data = await this._data;
 
-    const parts = this.split(data);
+    const cleared = this.clear(data);
+    const parts = this.split(cleared);
     const blocks = this.match(parts);
 
     this.result = this.combine(blocks);
 
     return this.result;
+  }
+
+  clear(data) {
+    return data.replace(/\/\*.*?\*\//gi, '');
   }
 
   split(data) {

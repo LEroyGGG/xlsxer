@@ -78,10 +78,52 @@ describe("Parser", () => {
           {
             "name": "border",
             "value": "#111 thick"
-          },
+          }
+        ]
+      },
+      {
+        "selectors": [
+          "STATE_100"
+        ],
+        "properties": [
           {
             "name": "background-color",
-            "value": "transparent"
+            "value": "#8c72b2"
+          }
+        ]
+      },
+      {
+        "selectors": [
+          "STATE_200"
+        ],
+        "properties": [
+          {
+            "name": "background-color",
+            "value": "#46a0df"
+          }
+        ]
+      },
+      {
+        "selectors": [
+          "STATE_300"
+        ],
+        "properties": [
+          {
+            "name": "background-color",
+            "value": "#dfab46"
+          }
+        ]
+      },
+      {
+        "selectors": [
+          "STATE_400",
+          "STATE_500",
+          "STATE_ERROR"
+        ],
+        "properties": [
+          {
+            "name": "background-color",
+            "value": "#df4654"
           }
         ]
       },
@@ -92,7 +134,7 @@ describe("Parser", () => {
         "properties": [
           {
             "name": "background-color",
-            "value": "red"
+            "value": "#ac0000"
           }
         ]
       },
@@ -104,6 +146,14 @@ describe("Parser", () => {
           {
             "name": "display",
             "value": "link"
+          },
+          {
+            "name": "text-align",
+            "value": "left"
+          },
+          {
+            "name": "border",
+            "value": "#111 thick"
           }
         ]
       },

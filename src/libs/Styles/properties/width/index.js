@@ -20,4 +20,6 @@ self.transform = value => {
   };
 };
 
+self.inheritable = false;
+
 module.exports = self;

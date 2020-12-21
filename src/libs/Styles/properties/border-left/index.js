@@ -13,4 +13,6 @@ self.transform = value => {
   };
 };
 
+self.inheritable = true;
+
 module.exports = self;
