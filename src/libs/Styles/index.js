@@ -4,20 +4,36 @@ const Rules = require('./classes/Rules');
 const properties = require('./properties');
 
 class Styles {
-  constructor() {
+  constructor(...path) {
     this._rules = new Rules();
+
+    this._ready = null;
+
+    path.length && this.addFile(...path);
+  }
+
+  ready() {
+    return this._ready;
   }
 
   async addInline(str) {
-    const items = await Parser.readInline(str).process();
+    this._ready = Parser.readInline(str).process();
+
+    const items = await this._ready;
 
     this.setRules(items);
+
+    return this;
   }
 
   async addFile(...src) {
-    const items = await Parser.readFile(...src).process();
+    this._ready = Parser.readFile(...src).process();
+
+    const items = await this._ready;
 
     this.setRules(items);
+
+    return this;
   }
 
   setRules(items) {
