@@ -13,8 +13,7 @@
   "author": "ReMonkey",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "archiver": "^4.0.1",
-    "clone": "^2.1.2"
+    "archiver": "^4.0.1"
   },
   "devDependencies": {
     "jest": "^26.1.0"
