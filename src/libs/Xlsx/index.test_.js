@@ -45,8 +45,6 @@ describe("Xlsx", () => {
   });
 
   test("Full step creation with styles", () => {
-    const styles = new Xlsx.Styles(__dirname, 'file.css');
-
     const data_1 = [
       [
         { stl: 'TITLE', value: 'Sheet 1 Title 1' },
@@ -93,6 +91,8 @@ describe("Xlsx", () => {
         { stl: 'VALUE', value: 'Sheet 1 Row 2 Col 5' }
       ]
     ];
+
+    const styles = new Xlsx.Styles(__dirname, 'file.css');
 
     const styles_1 = styles.clone().readInline('::cols { width: 10, 60, 15, 20, 10, 15, 5 }');
     const styles_2 = styles.clone().readInline('::cols { width: 60, 25, 10, 10, 15 }');

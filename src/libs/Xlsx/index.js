@@ -8,6 +8,8 @@ class Xlsx {
     this._sheets = [];
     this._shared = [];
 
+    this._result = null;
+
     if (isArray(data)) {
       const sheet = new Sheet('Sheet 1', data, styles || new Styles());
 
@@ -65,7 +67,17 @@ class Xlsx {
     }
   }
 
-  save(...dest) {
+  async build() {
+    if (!this._result) {
+      this._result = true;
+    }
+
+    return this._result;
+  }
+
+  async save(...dest) {
+    await this.build();
+
     dest = path.resolve(...dest);
   }
 }
