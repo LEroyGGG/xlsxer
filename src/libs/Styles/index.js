@@ -3,35 +3,64 @@ const Rules = require('./classes/Rules');
 
 const properties = require('./properties');
 
+const DEFAULT_STYLES = `
+  ::defaults {
+    width: 50px;
+    height: 26px;
+    display: text;
+    font-family: 'Calibri';
+    vertical-align: middle;
+    text-align: left;
+    font-size: 14px;
+    color: #000;
+    border: none;
+    background: transparent;
+  }
+`;
+
 class Styles {
   constructor(...path) {
     this._rules = new Rules();
 
-    this._ready = null;
+    this._waitings = [];
+
+    this.addInline(DEFAULT_STYLES);
 
     path.length && this.addFile(...path);
   }
 
   ready() {
-    return this._ready;
+    return Promise.all(this._waitings.slice());
   }
 
   async addInline(str) {
-    this._ready = Parser.readInline(str).process();
+    const wait = new Promise(async resolve => {
+      await this.ready();
 
-    const items = await this._ready;
+      const items = await Parser.readInline(str).process();
 
-    this.setRules(items);
+      this.setRules(items);
+
+      resolve();
+    });
+
+    this._waitings.push(wait);
 
     return this;
   }
 
   async addFile(...src) {
-    this._ready = Parser.readFile(...src).process();
+    const wait = new Promise(async resolve => {
+      await this.ready();
 
-    const items = await this._ready;
+      const items = await Parser.readFile(...src).process();
 
-    this.setRules(items);
+      this.setRules(items);
+
+      resolve();
+    });
+
+    this._waitings.push(wait);
 
     return this;
   }
@@ -71,6 +100,10 @@ class Styles {
     this.IDS = ids;
 
     return { ids, combines };
+  }
+
+  clone() {
+    
   }
 }
 

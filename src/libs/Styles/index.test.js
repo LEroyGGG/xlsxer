@@ -162,7 +162,9 @@ describe("Styles", () => {
   test("addFile & collect", async () => {
     const styles = new Styles();
 
-    await styles.addFile(__dirname, './styles.test.css');
+    styles.addFile(__dirname, './styles.test.css');
+
+    await styles.ready();
 
     result = styles.collect();
 
