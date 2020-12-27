@@ -35,7 +35,7 @@ class Locks {
     return null;
   }
 
-  getJoins() {
+  getMergedCells() {
     return this._items.map(item => {
       const { coords } = item;
 
