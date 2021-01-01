@@ -1,38 +1,84 @@
-const Sheet = require('../Sheet');
+const App = require('../App');
+const Core = require('../Core');
+const Document = require('../Document');
+const Workbook = require('../Workbook');
+const Shared = require('../Shared');
+
 const Styles = require('../Styles');
 
-const { isString, isArray } = require('../../utils/types');
+const Theme = require('../Theme');
+const Sheet = require('../Sheet');
+
+const modules = { App, Core, Document, Workbook, Shared };
+
+const { idGenerator } = require('../../utils/common');
+const { isString, isNumber, isArray } = require('../../utils/types');
 
 class Xlsx {
   constructor(data, styles) {
-    this._sheets = [];
-    this._shared = [];
+    this._nextId = idGenerator('rId');
+    this._nextIdx = idGenerator();
+
+    this.initializeModules();
+
+    style = styles || new Styles();
+
+    this.styles = styles.set({ id: this._nextId() });
+
+    this.sheets = this.normalizeSheets(data);
+    this.themes = [];
 
     this._result = null;
+  }
 
-    if (isArray(data)) {
-      const sheet = new Sheet('Sheet 1', data, styles || new Styles());
+  normalizeSheets(data) {
+    if (data instanceof Sheet) return [data];
 
-      this._sheets.push(sheet);
-    } else {
-      for (let i = 0, len = arguments.length; i < len; i++) {
-        const sheet = arguments[i];
+    const isListOfSheets = data.every(item => item instanceof Sheet);
 
-        if (!(sheet instanceof Sheet)) {
-          throw new Error('Invalid arguments passed into Xlsx constructor');
-        }
+    if (isListOfSheets) return data.slice();
 
-        this._sheets.push(sheet);
-      }
-    }
+    const isRawSheet = data => {
+      const isValidValue = value => isObject(value) || isString(value) || isNumber(value);
 
-    if (!this._sheets.length) {
-      throw new Error('Xlsx should contain at least one sheet');
+      return data.every(row => !!row.values || row.every(isValidValue));
+    };
+
+    const isRawData = isRawSheet(data);
+
+    if (isRawData) return [new Sheet(data, this.styles)];
+
+    const isRawList = data.every(isRawSheet);
+
+    if (isRawList) return data.map(sheet => new Sheet(sheet, this.styles));
+
+    throw new Error('Xlsx should contain at least one sheet');
+  }
+
+  initializeModules() {
+    for (let name in modules) {
+      if (!modules.hasOwnProperty(name)) continue;
+
+      const Constructor = modules[name];
+
+      name = name.toLowerCase();
+
+      this[name] = new Constructor().set({ id: this._nextId() });
     }
   }
 
+  meta(values) {
+    const list = [this.app, this.core, this.document, this.workbook];
+
+    for (let item, i = 0; item = list[i]; i++) {
+      item.set(values);
+    }
+
+    return this;
+  }
+
   collect() {
-    return this._sheets.map(sheet => sheet.collect());
+    return this.sheets.map(sheet => sheet.collect());
   }
 
   combine() {
@@ -44,35 +90,25 @@ class Xlsx {
   }
 
   repack(collected) {
-    for (let i = 0, i_len = collected.length; i < i_len; i++) {
-      const sheet = collected[i];
-
-      for (let j = 0, j_len = sheet.length; j < j_len; j++) {
-        const row = sheet[j];
-
-        for (let k = 0, k_len = row.length; k < k_len; k++) {
-          const cell = row[k];
-
+    for (let sheet, i = 0; sheet = collected[i]; i++) {
+      for (let row, j = 0; row = sheet[j]; j++) {
+        for (let cell, k = 0; cell = row[k]; k++) {
           const { value } = cell;
 
           cell.isShared = isString(value) && !/^\d*(\.\d+)?$/.test(value);
 
-          if (cell.isShared) {
-            cell.sharedId = this._shared.length;
+          if (!cell.isShared) continue;
 
-            this._shared.push(value);
-          }
+          cell.sharedId = this._shared.length;
+
+          this._shared.add(value);
         }
       }
     }
   }
 
   async build() {
-    if (!this._result) {
-      this._result = true;
-    }
-
-    return this._result;
+    return this._result = this._result || true;
   }
 
   async save(...dest) {

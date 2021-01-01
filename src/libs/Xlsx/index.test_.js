@@ -100,6 +100,6 @@ describe("Xlsx", () => {
     const sheet_1 = new Xlsx.Sheet('First sheet', data_1, styles_1);
     const sheet_2 = new Xlsx.Sheet('Second sheet', data_2, styles_2);
 
-    new Xlsx(sheet_1, sheet_2).meta({ author: 'Me', date: '2020-10-06' }).save(__dirname, 'full.debug.xlsx');
+    new Xlsx([sheet_1, sheet_2], styles).meta({ author: 'Me', date: '2020-10-06' }).save(__dirname, 'full.debug.xlsx');
   });
 });
