@@ -1,9 +1,10 @@
 const Cell = require('../Cell');
 
 class Row {
-  constructor(i, data, locks) {
+  constructor(i, data, settings, locks) {
     this._index = i;
     this._data = data;
+    this._settings = settings;
     this._locks = locks;
 
     this._collected = null;
@@ -36,7 +37,7 @@ class Row {
             const blocker = this._locks.get([j, idx_y]);
 
             if (blocker) {
-              console.warn(`Cell with the coordinates [${j}, ${idx_y}] already locked by [${blocker.coords[0][0]}, ${blocker.coords[0][1]}]`);
+              throw new Error(`Cell with the coordinates [${j}, ${idx_y}] already locked by [${blocker.coords[0][0]}, ${blocker.coords[0][1]}]`);
             }
           }
         }
