@@ -3,10 +3,10 @@ const self = {};
 self.font = { 'font-family': 'family', 'font-size': 'size', 'color': 'color' };
 
 self.border = {
-  'border-top-color': 'borderTopColor', 'border-top-style': 'borderTopStyle',
-  'border-left-color': 'borderLeftColor', 'border-left-style': 'borderLeftStyle',
-  'border-right-color': 'borderRightColor', 'border-right-style': 'borderRightStyle',
-  'border-bottom-color': 'borderBottomColor', 'border-bottom-style': 'borderBottomStyle',
+  'border-top-color': 'topColor', 'border-top-style': 'topStyle',
+  'border-left-color': 'leftColor', 'border-left-style': 'leftStyle',
+  'border-right-color': 'rightColor', 'border-right-style': 'rightStyle',
+  'border-bottom-color': 'bottomColor', 'border-bottom-style': 'bottomStyle',
 };
 
 self.background = { 'background-color': 'fill' };

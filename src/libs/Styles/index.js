@@ -3,23 +3,11 @@ const Rules = require('./classes/Rules');
 
 const properties = require('./properties');
 
-const DEFAULT_STYLES = `
-  ::defaults {
-    width: 50px;
-    height: 26px;
-    display: text;
-    font-family: 'Calibri';
-    vertical-align: middle;
-    text-align: left;
-    font-size: 14px;
-    color: #000;
-    border: none;
-    background: transparent;
-  }
-`;
+const DEFAULT_STYLES = require('./default.styles');
 
 class Styles {
   constructor(...path) {
+    this._id = null;
     this._rules = new Rules();
 
     this._waitings = [];
@@ -27,6 +15,12 @@ class Styles {
     this.addInline(DEFAULT_STYLES);
 
     path.length && this.addFile(...path);
+  }
+
+  set(values) {
+    if ('id' in values) this._id = values.id;
+
+    return this;
   }
 
   ready() {
@@ -103,7 +97,22 @@ class Styles {
   }
 
   clone() {
-    
+
+  }
+
+  getFonts() {
+  }
+
+  getBackgrounds() {
+  }
+
+  getBorders() {
+  }
+
+  getStyles() {
+  }
+
+  getAligns() {
   }
 }
 

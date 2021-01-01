@@ -7,13 +7,13 @@ const run = async () => {
 
   console.log(JSON.stringify(styles.collect(), null, '  '));
 
-  // const { ids, combines } = styles.combine();
-  //
-  // console.log(JSON.stringify({ ids, combines }, null, '  '));
-  //
-  // styles._rules._items.forEach(rule => {
-  //   console.log(rule.getName() + ' :: ' + rule.getId() + ' :: ' + JSON.stringify(rule._styles));
-  // });
+  const { ids, combines } = styles.combine();
+
+  console.log(JSON.stringify({ ids, combines }, null, '  '));
+
+  styles._rules._items.forEach(rule => {
+    console.log(rule.getName() + ' :: ' + rule.getId() + ' :: ' + JSON.stringify(rule._styles));
+  });
 };
 
 run();
