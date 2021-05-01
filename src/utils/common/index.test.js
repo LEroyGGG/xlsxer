@@ -4,15 +4,15 @@ describe("Utils: common", () => {
   test("idGenerator", () => {
     let next;
 
-    next = idGenerator();
+    next = self.idGenerator();
 
-    expect(next).toEqual(1);
-    expect(next).toEqual(2);
+    expect(next()).toEqual(1);
+    expect(next()).toEqual(2);
 
-    next = idGenerator('rid');
+    next = self.idGenerator('rid');
 
-    expect(next).toEqual('rid1');
-    expect(next).toEqual('rid2');
+    expect(next()).toEqual('rid1');
+    expect(next()).toEqual('rid2');
   });
 
   test("pick", () => {
