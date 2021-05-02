@@ -35,7 +35,7 @@ class Document {
     return this._createDate;
   }
 
-  getUpdateDate() {
+  getModifyDate() {
     return this._modifyDate;
   }
 }

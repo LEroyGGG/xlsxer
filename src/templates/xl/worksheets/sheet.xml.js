@@ -1,7 +1,7 @@
 const createColsList = sheet => {
   let xml = '';
 
-  xml += '<cols>';'
+  xml += '<cols>';
 
   const cols = sheet.getColsWidth();
 
@@ -9,7 +9,7 @@ const createColsList = sheet => {
     xml += '<col customWidth="1" max="' + col.to + '" min="' + col.from + '" width="' + col.width + '"/>';
   }
 
-  xml += '</cols>';'
+  xml += '</cols>';
 
   return xml;
 };
@@ -42,6 +42,16 @@ const createDataList = sheet => {
   return xml;
 };
 
+const createMergeCells = sheet => {
+  let xml = '';
+
+  xml += '<mergeCells count="4">';
+  xml +=   '<mergeCell ref="B1:C1"/>';
+  xml += '</mergeCells>';
+
+  return xml;
+};
+
 module.exports = function sheet(xlsx, sheet) {
   let xml = '';
 
@@ -60,6 +70,8 @@ module.exports = function sheet(xlsx, sheet) {
 
   xml += createColsList(sheet);
   xml += createDataList(sheet);
+
+  xml += createMergeCells(sheet);
 
   xml +=   '<pageMargins bottom="0.75" footer="0.3" header="0.3" left="0.7" right="0.7" top="0.75"/>';
   xml +=   '<pageSetup horizontalDpi="300" orientation="portrait" r:id="rId1" verticalDpi="300"/>';

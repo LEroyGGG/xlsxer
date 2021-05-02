@@ -14,10 +14,10 @@ module.exports = function core(xlsx) {
 
   xml +=   '<dcterms:created xsi:type="dcterms:W3CDTF">' + xlsx.document.getCreateDate() + '</dcterms:created>';
 
-  const udpate = xlsx.document.getUpdateDate();
+  const modify = xlsx.document.getModifyDate();
 
-  if (udpate) {
-    xml += '<dcterms:modified xsi:type="dcterms:W3CDTF">' + udpate + '</dcterms:modified>';
+  if (modify) {
+    xml += '<dcterms:modified xsi:type="dcterms:W3CDTF">' + modify + '</dcterms:modified>';
   }
 
   xml += '</cp:coreProperties>';

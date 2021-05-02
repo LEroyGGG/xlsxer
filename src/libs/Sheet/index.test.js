@@ -27,8 +27,7 @@ describe("Sheet", () => {
         { "value": null, "lockedBy": [2, 0] },
         { "value": null, "lockedBy": [2, 0] },
         { "value": "Title 4" },
-        { "value": "Title 5"
-        }
+        { "value": "Title 5" }
       ],
       [
         { "value": "Row 1 Col 1" },
@@ -38,8 +37,7 @@ describe("Sheet", () => {
         { "value": null, "lockedBy": [2, 0] },
         { "value": "Row 1 Col 3" },
         { "value": "Row 1 Col 4" },
-        { "value": "Row 1 Col 5"
-        }
+        { "value": "Row 1 Col 5" }
       ],
       [
         { "value": "Row 2 Col 1" },

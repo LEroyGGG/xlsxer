@@ -1,3 +1,5 @@
+const path = require(path);
+
 const App = require('../App');
 const Core = require('../Core');
 const Document = require('../Document');
@@ -9,10 +11,13 @@ const Styles = require('../Styles');
 const Theme = require('../Theme');
 const Sheet = require('../Sheet');
 
-const modules = { App, Core, Document, Workbook, Shared };
+const Build = require('../Build');
 
 const { idGenerator } = require('../../utils/common');
 const { isString, isNumber, isArray } = require('../../utils/types');
+const { writeStream } = require('../../utils/fs');
+
+const { DEFAULT_NAME } = require('./settings');
 
 class Xlsx {
   constructor(data, styles) {
@@ -26,7 +31,7 @@ class Xlsx {
     this.styles = styles.set({ id: this._nextId() });
 
     this.sheets = this.normalizeSheets(data);
-    this.themes = [];
+    this.themes = [new Theme()];
 
     this._result = null;
   }
@@ -46,11 +51,11 @@ class Xlsx {
 
     const isRawData = isRawSheet(data);
 
-    if (isRawData) return [new Sheet(data, this.styles)];
+    if (isRawData) return [new Sheet(DEFAULT_NAME(1), data, this.styles)];
 
     const isRawList = data.every(isRawSheet);
 
-    if (isRawList) return data.map(sheet => new Sheet(sheet, this.styles));
+    if (isRawList) return data.map((sheet, idx) => new Sheet(DEFAULT_NAME(idx + 1), sheet, this.styles));
 
     throw new Error('Xlsx should contain at least one sheet');
   }
@@ -108,13 +113,15 @@ class Xlsx {
   }
 
   async build() {
-    return this._result = this._result || true;
+    return this._result = new Build(this).render().zip();
   }
 
   async save(...dest) {
-    await this.build();
+    const data = await this.build();
 
     dest = path.resolve(...dest);
+
+    return writeStream(dest, data);
   }
 }
 

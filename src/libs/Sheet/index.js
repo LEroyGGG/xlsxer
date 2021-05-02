@@ -58,6 +58,10 @@ class Sheet {
   combine(data) {
     this._rows = this._data.map((item, i) => new Row(i, item));
   }
+
+  getData() {
+    
+  }
 }
 
 module.exports = Sheet;
