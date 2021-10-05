@@ -14,7 +14,7 @@ const Sheet = require('../Sheet');
 const Builder = require('../Builder');
 
 const { idGenerator } = require('../../utils/common');
-const { isString, isNumber, isArray } = require('../../utils/types');
+const { isString, isNumber, isArray, isObject } = require('../../utils/types');
 const { writeStream } = require('../../utils/fs');
 
 const { DEFAULT_NAME } = require('./settings');
@@ -44,11 +44,8 @@ class Xlsx {
 
     if (isListOfSheets) return data.map((item, idx) => item.set({ id: this._nextId(), xlId: this._nextXlId(), idx: idx + 1 }));
 
-    const isRawSheet = data => {
-      const isValidValue = value => isObject(value) || isString(value) || isNumber(value);
-
-      return data.every(row => !!row.values || row.every(isValidValue));
-    };
+    const isValidValue = value => isObject(value) || isString(value) || isNumber(value);
+    const isRawSheet = data => data.every(row => (isObject(row) && !!row.values) || row.every(isValidValue));
 
     const isRawData = isRawSheet(data);
 

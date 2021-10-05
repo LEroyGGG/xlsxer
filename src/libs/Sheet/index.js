@@ -87,16 +87,12 @@ class Sheet {
     });
   }
 
-  collect() {
-    return this._rows.map(row => row.collect());
-  }
-
-  combine(data) {
-    this._rows = this._data.map((item, i) => new Row(i, item));
-  }
-
   getData() {
     return this._rows.map(row => row.getData());
+  }
+
+  getMergedCells() {
+    return this._locks.getMergedCells();
   }
 }
 

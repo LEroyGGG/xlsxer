@@ -39,7 +39,10 @@ class Locks {
     return this._items.map(item => {
       const { coords } = item;
 
-      return n2l(coords[0][0]) + coords[0][1] + ':' + n2l(coords[1][0]) + coords[1][1];
+      const from = n2l(coords[0][0] + 1) + (coords[0][1] + 1);
+      const to = n2l(coords[1][0] + 1) + (coords[1][1] + 1);
+
+      return from  + ':' + to;
     });
   }
 }

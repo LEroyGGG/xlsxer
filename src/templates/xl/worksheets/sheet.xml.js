@@ -28,9 +28,10 @@ const createDataList = sheet => {
 
     for (let cell, j = 0; cell = cells[j]; j++) {
       const style = cell.getStyle();
+      const value = cell.getValue();
 
       xml += '<c r="' + cell.getName() + '"' + (style ? ' s="' + style + '"': '') + (cell.isShared() ? ' t="s"' : '') + '>';
-      xml +=   '<v>' + cell.getValue() + '</v>';
+      xml +=   '<v>' + (value != null ? value : '') + '</v>';
       xml += '</c>';
     }
 
@@ -45,9 +46,17 @@ const createDataList = sheet => {
 const createMergeCells = sheet => {
   let xml = '';
 
-  // xml += '<mergeCells count="4">';
-  // xml +=   '<mergeCell ref="B1:C1"/>';
-  // xml += '</mergeCells>';
+  const merges = sheet.getMergedCells();
+
+  if (!merges.length) return xml;
+
+  xml += '<mergeCells count="' + merges.length + '">';
+
+  for (let merge, i = 0; merge = merges[i]; i++) {
+    xml += '<mergeCell ref="' + merge + '"/>';
+  }
+
+  xml += '</mergeCells>';
 
   return xml;
 };
