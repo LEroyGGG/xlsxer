@@ -9,6 +9,8 @@ class Rules {
     this._styles = {};
 
     this._defaults = new Rule(Rules.SELECTOR_DEFAULT);
+
+    this._items.push(this._defaults);
   }
 
   map(callback) {
@@ -85,6 +87,10 @@ class Rules {
     }
 
     return ids;
+  }
+
+  getStyles() {
+    return this._items.map(rule => rule.getStyles());
   }
 }
 

@@ -1,9 +1,9 @@
 const self = {};
 
 self.simple = {
-  '_rels/.rels.xml': {
-    name: () => '_rels/.rels.xml',
-    file: require('../../templates/_rels/.rels.xml'),
+  '_rels/.rels': {
+    name: () => '_rels/.rels',
+    file: require('../../templates/_rels/.rels'),
   },
   'docProps/app.xml': {
     name: () => 'docProps/app.xml',

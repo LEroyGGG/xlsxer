@@ -31,7 +31,7 @@ const createFillsList = xlsx => {
   for (let fill, i = 0; fill = fills[i]; i++) {
     xml += '<fill>';
     xml +=   '<patternFill patternType="solid">'; // TODO: Add background type
-    xml +=     '<fgColor rgb="' + fill.color + '"/>';
+    xml +=     '<fgColor rgb="' + fill.fill + '"/>';
     xml +=     '<bgColor indexed="64"/>';
     xml +=   '</patternFill>';
     xml += '</fill>';
@@ -49,7 +49,7 @@ const createBordersList = xlsx => {
 
   xml += '<borders count="' + borders.length + '">';
 
-  const sides = ['top', 'left', 'right', 'bottom'];
+  const sides = ['left', 'right', 'top', 'bottom'];
 
   for (let border, i = 0; border = borders[i]; i++) {
     xml += '<border>';
@@ -58,7 +58,7 @@ const createBordersList = xlsx => {
       const style = border[side + 'Style'];
       const color = border[side + 'Color'];
 
-      if (border[style] !== null) {
+      if (border[style]) {
         xml += '<' + side + ' style="' + border[style] + '">';
         xml +=   '<color rgb="' + color + '"/>';
         xml += '</' + side + '>';
@@ -85,16 +85,16 @@ const createStylesList = xlsx => {
   xml += '<cellXfs count="' + styles.length + '">';
 
   for (let style, i = 0; style = styles[i]; i++) {
-    const { font, border, background } = style;
+    const { font, border, background, align } = style;
 
-    const { horizontal, vertical } = aligns[style.align];
+    const { horizontal, vertical } = aligns[align];
 
     if (horizontal || vertical) {
-      xml += '<xf applyAlignment="1"' + (border ? 'applyBorder="1" borderId="' + border + '"' : '') + 'fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="1">';
+      xml += '<xf applyAlignment="1"' + (border ? ' applyBorder="1" borderId="' + border + '"' : '') + ' fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="1">';
       xml +=   '<alignment' + (vertical ? ' vertical="' + vertical + '"': '') + (horizontal ? ' horizontal="' + horizontal + '"' : '') +'/>';
       xml += '</xf>';
     } else {
-      xml += '<xf' + (border ? 'applyBorder="1" borderId="' + border + '"' : '') + 'fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="1">';
+      xml += '<xf' + (border ? ' applyBorder="1" borderId="' + border + '"' : '') + ' fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="1" />';
     }
   }
 
@@ -114,16 +114,14 @@ module.exports = function styles(xlsx) {
   xml += createFillsList(xlsx);
   xml += createBordersList(xlsx);
 
-  xml +=   '<cellStyleXfs count="2">';
+  xml +=   '<cellStyleXfs count="1">';
   xml +=     '<xf borderId="0" fillId="0" fontId="0" numFmtId="0"/>';
-  xml +=     '<xf borderId="0" fillId="0" fontId="1" numFmtId="0"/>';
   xml +=   '</cellStyleXfs>';
 
   xml += createStylesList(xlsx);
 
-  xml +=   '<cellStyles count="2">';
+  xml +=   '<cellStyles count="1">';
   xml +=     '<cellStyle builtinId="0" name="Normal" xfId="0"/>';
-  xml +=     '<cellStyle name="Normal 2" xfId="1"/>';
   xml +=   '</cellStyles>';
   xml +=   '<dxfs count="0"/>';
   xml +=   '<tableStyles count="0" defaultPivotStyle="PivotStyleLight16" defaultTableStyle="TableStyleMedium2"/>';

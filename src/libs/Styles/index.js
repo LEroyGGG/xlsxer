@@ -8,6 +8,7 @@ const DEFAULT_STYLES = require('./default.styles');
 class Styles {
   constructor(...path) {
     this._id = null;
+    this._xlId = null;
     this._rules = new Rules();
 
     this._waitings = [];
@@ -19,8 +20,17 @@ class Styles {
 
   set(values) {
     if ('id' in values) this._id = values.id;
+    if ('xlId' in values) this._xlId = values.xlId;
 
     return this;
+  }
+
+  getId() {
+    return this._id;
+  }
+
+  getXlId() {
+    return this._xlId;
   }
 
   ready() {
@@ -101,18 +111,28 @@ class Styles {
   }
 
   getFonts() {
+    return this.STYLES.font;
   }
 
   getBackgrounds() {
+    return this.STYLES.background;
   }
 
   getBorders() {
+    return this.STYLES.border;
   }
 
   getStyles() {
+    return this._rules.getStyles();
   }
 
   getAligns() {
+    return this.STYLES.align;
+  }
+
+  getColsWidth(from, to) {
+    console.log('TODO: get from & to values from sheet data');
+    return [{ from, to, width: 25 }];
   }
 }
 

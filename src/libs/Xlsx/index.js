@@ -1,4 +1,4 @@
-const path = require(path);
+const path = require('path');
 
 const App = require('../App');
 const Core = require('../Core');
@@ -11,7 +11,7 @@ const Styles = require('../Styles');
 const Theme = require('../Theme');
 const Sheet = require('../Sheet');
 
-const Build = require('../Build');
+const Builder = require('../Builder');
 
 const { idGenerator } = require('../../utils/common');
 const { isString, isNumber, isArray } = require('../../utils/types');
@@ -22,26 +22,27 @@ const { DEFAULT_NAME } = require('./settings');
 class Xlsx {
   constructor(data, styles) {
     this._nextId = idGenerator('rId');
+    this._nextXlId = idGenerator('rId');
     this._nextIdx = idGenerator();
 
-    this.initializeModules();
-
-    style = styles || new Styles();
-
-    this.styles = styles.set({ id: this._nextId() });
-
-    this.sheets = this.normalizeSheets(data);
-    this.themes = [new Theme()];
+    this.initializeModules(data, styles);
+    this.conjunctionSheets();
 
     this._result = null;
   }
 
-  normalizeSheets(data) {
-    if (data instanceof Sheet) return [data];
+  meta(values) {
+    [this.app, this.core, this.document, this.workbook].forEach(item => item.set(values));
+
+    return this;
+  }
+
+  createSheets(data) {
+    if (data instanceof Sheet) data = [data];
 
     const isListOfSheets = data.every(item => item instanceof Sheet);
 
-    if (isListOfSheets) return data.slice();
+    if (isListOfSheets) return data.map((item, idx) => item.set({ id: this._nextId(), xlId: this._nextXlId(), idx: idx + 1 }));
 
     const isRawSheet = data => {
       const isValidValue = value => isObject(value) || isString(value) || isNumber(value);
@@ -51,72 +52,69 @@ class Xlsx {
 
     const isRawData = isRawSheet(data);
 
-    if (isRawData) return [new Sheet(DEFAULT_NAME(1), data, this.styles)];
+    if (isRawData) data = [data];
 
     const isRawList = data.every(isRawSheet);
 
-    if (isRawList) return data.map((sheet, idx) => new Sheet(DEFAULT_NAME(idx + 1), sheet, this.styles));
+    if (isRawList) {
+      return data.map((sheet, idx) => {
+        const item = new Sheet(DEFAULT_NAME(idx + 1), sheet, this.styles);
+
+        return item.set({ id: this._nextId(), xlId: this._nextXlId(), idx: idx + 1 });
+      });
+    }
 
     throw new Error('Xlsx should contain at least one sheet');
   }
 
-  initializeModules() {
-    for (let name in modules) {
-      if (!modules.hasOwnProperty(name)) continue;
+  initializeModules(data, styles) {
+    this.app = new App().set({ id: this._nextId() });
+    this.core = new Core().set({ id: this._nextId() });
+    this.workbook = new Workbook().set({ id: this._nextId() });
+    this.document = new Document().set({ id: this._nextId() });
+    this.shared = new Shared().set({ id: this._nextId(), xlId: this._nextXlId() });
 
-      const Constructor = modules[name];
+    this.styles = (styles || new Styles()).set({ id: this._nextId(), xlId: this._nextXlId() });
 
-      name = name.toLowerCase();
+    this.sheets = this.createSheets(data);
+    this.themes = [new Theme().set({ id: this._nextId(), xlId: this._nextXlId(), idx: 1 })];
+  }
 
-      this[name] = new Constructor().set({ id: this._nextId() });
+  conjunctionSheets() {
+    for (let sheet, i = 0; sheet = this.sheets[i]; i++) {
+      sheet.everyCell(cell => {
+        const value = cell.getValue();
+
+        if (!isString(value) || /^\d*(\.\d+)?$/.test(value)) return;
+
+        const sharedId = this.shared.add(value);
+
+        cell.set({ sharedId });
+      });
     }
   }
 
-  meta(values) {
-    const list = [this.app, this.core, this.document, this.workbook];
-
-    for (let item, i = 0; item = list[i]; i++) {
-      item.set(values);
-    }
-
-    return this;
-  }
-
-  collect() {
-    return this.sheets.map(sheet => sheet.collect());
-  }
-
-  combine() {
-    const collected = this.collect();
-
-    this.repack(collected);
-
-    return collected;
-  }
-
-  repack(collected) {
-    for (let sheet, i = 0; sheet = collected[i]; i++) {
-      for (let row, j = 0; row = sheet[j]; j++) {
-        for (let cell, k = 0; cell = row[k]; k++) {
-          const { value } = cell;
-
-          cell.isShared = isString(value) && !/^\d*(\.\d+)?$/.test(value);
-
-          if (!cell.isShared) continue;
-
-          cell.sharedId = this._shared.length;
-
-          this._shared.add(value);
-        }
-      }
-    }
-  }
+  // collect() {
+  //   return this.sheets.map(sheet => sheet.collect());
+  // }
+  //
+  // combine() {
+  //   const collected = this.collect();
+  //
+  //   this.repack(collected);
+  //
+  //   return collected;
+  // }
 
   async build() {
-    return this._result = new Build(this).render().zip();
+    return this._result = new Builder(this).render().zip();
   }
 
   async save(...dest) {
+    await this.styles.ready();
+
+    this.styles.combine();
+
     const data = await this.build();
 
     dest = path.resolve(...dest);

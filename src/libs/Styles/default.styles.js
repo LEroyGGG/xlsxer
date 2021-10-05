@@ -6,7 +6,7 @@ module.exports = `
     font-family: 'Calibri';
     vertical-align: middle;
     text-align: left;
-    font-size: 14px;
+    font-size: 11px;
     color: #000;
     border: none;
     background: transparent;

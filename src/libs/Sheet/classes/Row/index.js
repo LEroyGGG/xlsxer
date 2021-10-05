@@ -7,9 +7,13 @@ class Row {
     this._settings = settings;
     this._locks = locks;
 
+    this._size = 0;
+
     this._collected = null;
 
     this._cells = [];
+
+    this.combine();
   }
 
   collect() {
@@ -25,12 +29,16 @@ class Row {
       let lock = this._locks.get(coords);
       let item = null;
 
+      const src = this._data[i];
+
       if (lock) {
         const { colSpan, rowSpan, ...data } = lock.data;
 
         item = { ...data, lockedBy: lock.coords[0] };
       } else {
-        const { colSpan = 1, rowSpan = 1 } = item = this._data[i++];
+        const { colSpan = 1, rowSpan = 1 } = item = src;
+
+        i += 1;
 
         if (colSpan > 1) {
           for (let j = idx_x + 1, len = idx_x + colSpan; j < len; j++) {
@@ -48,6 +56,10 @@ class Row {
       }
 
       this._collected.push(item);
+
+      if (i === len) {
+        this._size = idx_x + 1 + (src.colSpan || 1) - 1;
+      }
     }
 
     return this._collected;
@@ -56,7 +68,18 @@ class Row {
   combine() {
     const collected = this.collect();
 
-    this.cells = collected.map((data, i) => new Cell([this._index, i], data));
+    this._cells = collected.map((data, i) => new Cell([this._index, i], data));
+  }
+
+  getSize() {
+    return this._size;
+  }
+
+  getData() {
+    const cells = this._cells;
+    const spans = '1:' + this._size;
+
+    return { cells, spans };
   }
 }
 

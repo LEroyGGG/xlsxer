@@ -1,9 +1,9 @@
-const createColsList = sheet => {
+const createColsList = (sheet, styles) => {
   let xml = '';
 
   xml += '<cols>';
 
-  const cols = sheet.getColsWidth();
+  const cols = styles.getColsWidth(1, 5);
 
   for (let col, i = 0; col = cols[i]; i++) {
     xml += '<col customWidth="1" max="' + col.to + '" min="' + col.from + '" width="' + col.width + '"/>';
@@ -27,10 +27,10 @@ const createDataList = sheet => {
     xml += '<row' + (height ? ' customHeight="1" ht="' + height + '"' : '') + ' r="' + (i + 1) + '"' + (spans ? ' spans="' + spans + '"' : '') + ' x14ac:dyDescent="0.25">';
 
     for (let cell, j = 0; cell = cells[j]; j++) {
-      const { name, value, isLink, style } = cell;
+      const style = cell.getStyle();
 
-      xml += '<c r="' + name + '" s="' + style + '"' + (isLink ? ' t="s"' : '') + '>';
-      xml +=   '<v>' + value + '</v>';
+      xml += '<c r="' + cell.getName() + '"' + (style ? ' s="' + style + '"': '') + (cell.isShared() ? ' t="s"' : '') + '>';
+      xml +=   '<v>' + cell.getValue() + '</v>';
       xml += '</c>';
     }
 
@@ -45,9 +45,9 @@ const createDataList = sheet => {
 const createMergeCells = sheet => {
   let xml = '';
 
-  xml += '<mergeCells count="4">';
-  xml +=   '<mergeCell ref="B1:C1"/>';
-  xml += '</mergeCells>';
+  // xml += '<mergeCells count="4">';
+  // xml +=   '<mergeCell ref="B1:C1"/>';
+  // xml += '</mergeCells>';
 
   return xml;
 };
@@ -68,7 +68,7 @@ module.exports = function sheet(xlsx, sheet) {
 
   xml +=   '<sheetFormatPr defaultRowHeight="15" x14ac:dyDescent="0.25"/>';
 
-  xml += createColsList(sheet);
+  xml += createColsList(sheet, xlsx.styles);
   xml += createDataList(sheet);
 
   xml += createMergeCells(sheet);

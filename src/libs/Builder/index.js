@@ -49,6 +49,8 @@ class Builder {
 
     this._xlsx.themes.forEach((theme, idx) => this.renderType('themes', theme, idx));
     this._xlsx.sheets.forEach((sheet, idx) => this.renderType('sheets', sheet, idx));
+
+    return this;
   }
 
   zip() {

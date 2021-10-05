@@ -3,6 +3,7 @@ const Styles = require('../Styles');
 const Row = require('./classes/Row');
 const Locks = require('./classes/Locks');
 
+const n2l = require('../../utils/num2letter');
 const { isString, isObject } = require('../../utils/types');
 
 class Sheet {
@@ -13,6 +14,7 @@ class Sheet {
 
     this._id = null;
     this._idx = null;
+    this._xlId = null;
 
     this._locks = new Locks();
 
@@ -43,12 +45,46 @@ class Sheet {
   set(values) {
     if ('id' in values) this._id = values.id;
     if ('idx' in values) this._idx = values.idx;
+    if ('xlId' in values) this._xlId = values.xlId;
 
     return this;
   }
 
+  getId() {
+    return this._id;
+  }
+
+  getIdx() {
+    return this._idx;
+  }
+
+  getXlId() {
+    return this._xlId;
+  }
+
   getName() {
     return this._name;
+  }
+
+  getDimension() {
+    const rows = this._rows.length;
+    const cols = Math.max(...this._rows.map(row => row.getSize()));
+
+    return 'A1:' + n2l(cols) + rows;
+  }
+
+  everyRow(callback) {
+    for (let row, i = 0; row = this._rows[i]; i++) {
+      callback(row, i);
+    }
+  }
+
+  everyCell(callback) {
+    this.everyRow((row, i) => {
+      for (let cell, j = 0; cell = row._cells[j]; j++) {
+        callback(cell, j, row, i);
+      }
+    });
   }
 
   collect() {
@@ -60,7 +96,7 @@ class Sheet {
   }
 
   getData() {
-    
+    return this._rows.map(row => row.getData());
   }
 }
 

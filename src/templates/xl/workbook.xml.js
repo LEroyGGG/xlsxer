@@ -8,7 +8,7 @@ module.exports = function workbook(xlsx) {
   xml +=   '<workbookPr defaultThemeVersion="164011"/>';
   xml +=   '<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">';
   xml +=     '<mc:Choice Requires="x15">';
-  xml +=       '<x15ac:absPath url="C:\" xmlns:x15ac="http://schemas.microsoft.com/office/spreadsheetml/2010/11/ac"/>';
+  xml +=       '<x15ac:absPath url="C:\\" xmlns:x15ac="http://schemas.microsoft.com/office/spreadsheetml/2010/11/ac"/>';
   xml +=     '</mc:Choice>';
   xml +=   '</mc:AlternateContent>';
   xml +=   '<bookViews>';
@@ -17,7 +17,7 @@ module.exports = function workbook(xlsx) {
   xml +=   '<sheets>';
 
   for (let sheet, i = 0; sheet = xlsx.sheets[i]; i++) {
-    xml +=   '<sheet name="' + sheet.getName() + '" r:id="' + sheet.getId() + '" sheetId="' + sheet.getIdx() + '"/>';
+    xml +=   '<sheet name="' + sheet.getName() + '" r:id="' + sheet.getXlId() + '" sheetId="' + sheet.getIdx() + '"/>';
   }
 
   xml +=   '</sheets>';

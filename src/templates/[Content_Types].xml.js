@@ -5,7 +5,7 @@ module.exports = function contentTypes(xlsx) {
 
   xml += '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">';
 
-	xml +=   '<Default ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.printerSettings" Extension="bin"/>';
+	// xml +=   '<Default ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.printerSettings" Extension="bin"/>';
 	xml +=   '<Default ContentType="application/vnd.openxmlformats-package.relationships+xml" Extension="rels"/>';
 	xml +=   '<Default ContentType="application/xml" Extension="xml"/>';
 	xml +=   '<Override ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" PartName="/xl/workbook.xml"/>';
