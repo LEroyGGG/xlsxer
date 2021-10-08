@@ -2,6 +2,26 @@ const Styles = require('.');
 
 describe("Styles", () => {
   const data = {
+    "::defaults": {
+      "width": 50,
+      "height": 25,
+      "display": "text",
+      "font-family": "Calibri",
+      "vertical-align": "middle",
+      "text-align": "center",
+      "font-size": 14,
+      "color": "FF111111",
+      "border-bottom-color": null,
+      "border-bottom-style": null,
+      "border-left-color": null,
+      "border-left-style": null,
+      "border-right-color": null,
+      "border-right-style": null,
+      "border-top-color": null,
+      "border-top-style": null,
+      "background-color": "00000000",
+      "background-style": "solid",
+    },
     "::row(1)": {
       "height": 36,
       "display": "text",
@@ -19,7 +39,8 @@ describe("Styles", () => {
       "border-right-style": null,
       "border-bottom-style": null,
       "background-color": "00000000",
-      "position": "fixed"
+      "background-style": "solid",
+      "position": "fixed",
     },
     "STATE_100": {
       "display": "text",
@@ -36,7 +57,8 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FF8C72B2"
+      "background-color": "FF8C72B2",
+      "background-style": "solid",
     },
     "STATE_200": {
       "display": "text",
@@ -53,7 +75,8 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FF46A0DF"
+      "background-color": "FF46A0DF",
+      "background-style": "solid",
     },
     "STATE_300": {
       "display": "text",
@@ -70,7 +93,8 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FFDFAB46"
+      "background-color": "FFDFAB46",
+      "background-style": "solid",
     },
     "STATE_400": {
       "display": "text",
@@ -87,7 +111,8 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FFDF4654"
+      "background-color": "FFDF4654",
+      "background-style": "solid",
     },
     "STATE_500": {
       "display": "text",
@@ -104,7 +129,8 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FFDF4654"
+      "background-color": "FFDF4654",
+      "background-style": "solid",
     },
     "STATE_ERROR": {
       "display": "text",
@@ -121,7 +147,8 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FFAC0000"
+      "background-color": "FFAC0000",
+      "background-style": "solid",
     },
     "URL": {
       "display": "link",
@@ -138,7 +165,8 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "00000000"
+      "background-color": "00000000",
+      "background-style": "solid",
     },
     "EMPTY": {
       "display": "text",
@@ -155,7 +183,8 @@ describe("Styles", () => {
       "border-left-style": null,
       "border-right-style": null,
       "border-bottom-style": null,
-      "background-color": "00000000"
+      "background-color": "00000000",
+      "background-style": "solid",
     }
   };
 

@@ -1,6 +1,7 @@
 module.exports = {
   'background': require('./properties/background'),
   'background-color': require('./properties/background-color'),
+  'background-style': require('./properties/background-style'),
   'border': require('./properties/border'),
   'border-bottom': require('./properties/border-bottom'),
   'border-bottom-color': require('./properties/border-bottom-color'),

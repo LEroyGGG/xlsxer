@@ -1,5 +1,7 @@
 const properties = require('../../properties');
 
+const { DISPLACE } = require('../../constants');
+
 class Rule {
   constructor(name, defaults) {
     this._id = null;
@@ -63,6 +65,13 @@ class Rule {
   }
 
   setStyle(name, id) {
+    id += {
+      background: DISPLACE.BACKGROUND,
+      border: DISPLACE.BORDER,
+      font: DISPLACE.FONT,
+    }[name] || 0;
+
+    console.log(name, '::', id);
     this._styles[name] = id;
   }
 

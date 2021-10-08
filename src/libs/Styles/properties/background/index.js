@@ -1,17 +1,51 @@
 const Color = require('../../../../utils/color');
 
+const NONE = 'none';
+
+// TODO: Add other background styles
+const list = [NONE, 'gray125', 'solid'];
+
+const reg_clean_types = new RegExp('\\b(' + list.join('|') + ')\\b', 'ig');
+
 const self = {};
 
-self.validate = value => (new Color(value)).isValid;
+self.validate = value => {
+  if (value === NONE) return true;
+
+  let cleaned = value.replace(reg_clean_types, '').trim();
+
+  const color = new Color(cleaned);
+
+  if (!color.isValid) return false;
+
+  cleaned = value.replace(cleaned, '').trim() || 'solid';
+
+  return list.includes(cleaned);
+};
 
 self.transform = value => {
-  const color = new Color(value);
+  let color = (new Color('#fff')).hexExcel();
+  let style = value;
+
+  if (value !== NONE) {
+    const cleaned = value.replace(reg_clean_types, '').trim();
+
+    color = (new Color(cleaned)).hexExcel();
+    style = value.replace(cleaned, '').trim() || 'solid';
+  }
 
   return {
-    'background-color': color.hexExcel()
+    'background-color': color,
+    'background-style': style,
   };
 };
 
 self.inheritable = true;
+
+self.validateColor = color => (new Color(color)).isValid;
+self.validateStyle = style => list.includes(style);
+
+self.transformColor = color => (new Color(color)).hexExcel();
+self.transformStyle = style => style;
 
 module.exports = self;

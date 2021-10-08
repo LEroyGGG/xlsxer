@@ -1,9 +1,19 @@
+const { DISPLACE } = require('../../libs/Styles/constants');
+
 const createFontsList = xlsx => {
   const fonts = xlsx.styles.getFonts();
 
   let xml = '';
 
-  xml += '<fonts count="' + fonts.length + '" x14ac:knownFonts="1">';
+  xml += '<fonts count="' + (fonts.length + DISPLACE.FONT) + '" x14ac:knownFonts="1">';
+
+  xml += '<font>';
+  xml +=   '<sz val="11"/>';
+  xml +=   '<color theme="1"/>';
+  xml +=   '<name val="Calibri"/>';
+  xml +=   '<family val="2"/>';
+  xml +=   '<scheme val="minor"/>';
+  xml += '</font>';
 
   for (let font, i = 0; font = fonts[i]; i++) {
     xml += '<font>';
@@ -26,7 +36,15 @@ const createFillsList = xlsx => {
 
   let xml = '';
 
-  xml += '<fills count="' + fills.length + '">';
+  xml += '<fills count="' + (fills.length + DISPLACE.BACKGROUND) + '">';
+
+  xml += '<fill>';
+  xml +=   '<patternFill patternType="none"/>';
+  xml += '</fill>';
+  xml += '<fill>';
+  xml +=   '<patternFill patternType="gray125"/>';
+  xml += '</fill>';
+
 
   for (let fill, i = 0; fill = fills[i]; i++) {
     xml += '<fill>';
@@ -47,7 +65,15 @@ const createBordersList = xlsx => {
 
   let xml = '';
 
-  xml += '<borders count="' + borders.length + '">';
+  xml += '<borders count="' + (borders.length + DISPLACE.BORDER) + '">';
+
+  xml += '<border>';
+  xml +=   '<left/>';
+  xml +=   '<right/>';
+  xml +=   '<top/>';
+  xml +=   '<bottom/>';
+  xml +=   '<diagonal/>';
+  xml += '</border>';
 
   const sides = ['left', 'right', 'top', 'bottom'];
 
@@ -82,7 +108,9 @@ const createStylesList = xlsx => {
 
   let xml = '';
 
-  xml += '<cellXfs count="' + styles.length + '">';
+  xml += '<cellXfs count="' + (styles.length + DISPLACE.STYLE) + '">';
+
+  xml += '<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>';
 
   for (let style, i = 0; style = styles[i]; i++) {
     const { font, border, background, align } = style.values;
