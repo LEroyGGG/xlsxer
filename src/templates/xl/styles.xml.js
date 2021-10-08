@@ -48,10 +48,16 @@ const createFillsList = xlsx => {
 
   for (let fill, i = 0; fill = fills[i]; i++) {
     xml += '<fill>';
-    xml +=   '<patternFill patternType="solid">'; // TODO: Add background type
-    xml +=     '<fgColor rgb="' + fill.fill + '"/>';
-    xml +=     '<bgColor indexed="64"/>';
-    xml +=   '</patternFill>';
+
+    if (fill.pattern === 'solid') {
+      xml += '<patternFill patternType="' + fill.pattern + '">';
+      xml +=   '<fgColor rgb="' + fill.fill + '"/>';
+      xml +=   '<bgColor indexed="64"/>';
+      xml += '</patternFill>';
+    } else {
+      xml += '<patternFill patternType="' + fill.pattern + '"/>';
+    }
+
     xml += '</fill>';
   }
 
@@ -84,8 +90,8 @@ const createBordersList = xlsx => {
       const style = border[side + 'Style'];
       const color = border[side + 'Color'];
 
-      if (border[style]) {
-        xml += '<' + side + ' style="' + border[style] + '">';
+      if (style) {
+        xml += '<' + side + ' style="' + style + '">';
         xml +=   '<color rgb="' + color + '"/>';
         xml += '</' + side + '>';
       } else {

@@ -9,7 +9,7 @@ self.border = {
   'border-bottom-color': 'bottomColor', 'border-bottom-style': 'bottomStyle',
 };
 
-self.background = { 'background-color': 'fill' };
+self.background = { 'background-color': 'fill', 'background-style': 'pattern' };
 
 self.align = { 'text-align': 'horizontal', 'verical-align': 'verical' };
 

@@ -71,7 +71,6 @@ class Rule {
       font: DISPLACE.FONT,
     }[name] || 0;
 
-    console.log(name, '::', id);
     this._styles[name] = id;
   }
 

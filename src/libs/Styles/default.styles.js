@@ -9,6 +9,6 @@ module.exports = `
     font-size: 11px;
     color: #000;
     border: none;
-    background: transparent;
+    background: none;
   }
 `;

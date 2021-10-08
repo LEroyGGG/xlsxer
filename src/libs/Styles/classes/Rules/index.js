@@ -77,7 +77,6 @@ class Rules {
       const item = this._items[i];
 
       const styles = item.getStyles();
-      console.log('## -> ', styles);
       const key = createKey(styles);
 
       !(key in map) && (map[key] = id++);
