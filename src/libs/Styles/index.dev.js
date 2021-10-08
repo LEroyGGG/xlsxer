@@ -1,8 +1,8 @@
 const Styles = require('.');
 
 const run = async () => {
-  const styles = new Styles();
-  // const styles = new Styles(__dirname, './styles.test.css');
+  // const styles = new Styles();
+  const styles = new Styles(__dirname, './styles.test.css');
 
   await styles.ready();
 

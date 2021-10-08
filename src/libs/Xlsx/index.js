@@ -42,7 +42,13 @@ class Xlsx {
 
     const isListOfSheets = data.every(item => item instanceof Sheet);
 
-    if (isListOfSheets) return data.map((item, idx) => item.set({ id: this._nextId(), xlId: this._nextXlId(), idx: idx + 1 }));
+    if (isListOfSheets) return data.map((item, idx) => {
+      !item.getStyles() && item.set({ styles: this.styles });
+
+      item.set({ id: this._nextId(), xlId: this._nextXlId(), idx: idx + 1 });
+
+      return item;
+    });
 
     const isValidValue = value => isObject(value) || isString(value) || isNumber(value);
     const isRawSheet = data => data.every(row => (isObject(row) && !!row.values) || row.every(isValidValue));

@@ -85,12 +85,12 @@ const createStylesList = xlsx => {
   xml += '<cellXfs count="' + styles.length + '">';
 
   for (let style, i = 0; style = styles[i]; i++) {
-    const { font, border, background, align } = style;
+    const { font, border, background, align } = style.values;
 
     const { horizontal, vertical } = aligns[align];
 
     if (horizontal || vertical) {
-      xml += '<xf applyAlignment="1"' + (border ? ' applyBorder="1" borderId="' + border + '"' : '') + ' fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="1">';
+      xml += '<xf applyAlignment="1"' + (border ? ' applyBorder="1" borderId="' + border + '"' : '') + ' fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="0">';
       xml +=   '<alignment' + (vertical ? ' vertical="' + vertical + '"': '') + (horizontal ? ' horizontal="' + horizontal + '"' : '') +'/>';
       xml += '</xf>';
     } else {
@@ -125,17 +125,6 @@ module.exports = function styles(xlsx) {
   xml +=   '</cellStyles>';
   xml +=   '<dxfs count="0"/>';
   xml +=   '<tableStyles count="0" defaultPivotStyle="PivotStyleLight16" defaultTableStyle="TableStyleMedium2"/>';
-  xml +=   '<colors>';
-  xml +=     '<mruColors>';
-  xml +=       '<color rgb="FFFD8C9A"/>';
-  xml +=       '<color rgb="FF6F4F9F"/>';
-  xml +=       '<color rgb="FF886AB5"/>';
-  xml +=       '<color rgb="FFFFEB9C"/>';
-  xml +=       '<color rgb="FFA5CDE2"/>';
-  xml +=       '<color rgb="FFC6EFCE"/>';
-  xml +=       '<color rgb="FF99F1A9"/>';
-  xml +=     '</mruColors>';
-  xml +=   '</colors>';
   xml +=   '<extLst>';
   xml +=     '<ext uri="{EB79DEF2-80B8-43e5-95BD-54CBDDF9020C}" xmlns:x14="http://schemas.microsoft.com/office/spreadsheetml/2009/9/main">';
   xml +=       '<x14:slicerStyles defaultSlicerStyle="SlicerStyleLight1"/>';

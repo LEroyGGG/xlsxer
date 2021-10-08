@@ -106,8 +106,10 @@ class Styles {
     return { ids, combines };
   }
 
-  clone() {
+  getIdByName(name) {
+    const rule = this._rules._items.find(rule => rule.getName() === name);
 
+    return rule ? rule.getId() : null;
   }
 
   getFonts() {
@@ -135,6 +137,8 @@ class Styles {
     return [{ from, to, width: 25 }];
   }
 }
+
+Styles.NAME_DEFAULT = '::defaults';
 
 Styles.properties = properties;
 

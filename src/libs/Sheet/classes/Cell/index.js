@@ -1,15 +1,17 @@
+const { NAME_DEFAULT } = require('../../../Styles');
+
 const n2l = require('../../../../utils/num2letter');
 
 const { isString } = require('../../../../utils/types');
-
-const STYLE_DEFAULT = '::defaults';
 
 class Cell {
   constructor(index, data) {
     this._index = index;
 
     this._value = isString(data) ? data : data.value;
-    this._style = isString(data) ? STYLE_DEFAULT : data.stl;
+    this._style = isString(data) ? NAME_DEFAULT : data.stl;
+
+    this._styles = null;
 
     this._isShared = false;
     this._sharedId = null;
@@ -28,6 +30,10 @@ class Cell {
       this._sharedId = values.sharedId;
     }
 
+    if ('styles' in values) {
+      this._styles = values.styles;
+    }
+
     return this;
   }
 
@@ -40,7 +46,7 @@ class Cell {
   }
 
   getStyle() {
-    return this._style;
+    return this._styles.getIdByName(this._style) || this._styles.getIdByName(NAME_DEFAULT);
   }
 }
 

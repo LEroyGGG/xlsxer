@@ -7,18 +7,14 @@ const n2l = require('../../utils/num2letter');
 const { isString, isObject } = require('../../utils/types');
 
 class Sheet {
-  constructor(name, data, styles) {
-    if (!(styles instanceof Styles)) {
-      throw new Error('Each Xlsx Sheet shoult take Styles as a 3rd argument');
-    }
-
+  constructor(name, data) {
     this._id = null;
     this._idx = null;
     this._xlId = null;
 
     this._locks = new Locks();
 
-    this._styles = styles;
+    this._styles = null;
 
     this._data = [];
     this._rows = [];
@@ -38,7 +34,7 @@ class Sheet {
       }
 
       this._data[i] = row;
-      this._rows[i] = new Row(i, row, settings, this._locks);
+      this._rows[i] = new Row(i, row, settings, this._locks, this._styles);
     }
   }
 
@@ -46,6 +42,11 @@ class Sheet {
     if ('id' in values) this._id = values.id;
     if ('idx' in values) this._idx = values.idx;
     if ('xlId' in values) this._xlId = values.xlId;
+    if ('styles' in values) {
+      this._styles = values.styles;
+
+      this._rows.forEach(cell => cell.set({ styles: this._styles }));
+    }
 
     return this;
   }
@@ -64,6 +65,10 @@ class Sheet {
 
   getName() {
     return this._name;
+  }
+
+  getStyles() {
+    return this._styles;
   }
 
   getDimension() {

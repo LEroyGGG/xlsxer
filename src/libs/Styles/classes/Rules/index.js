@@ -83,14 +83,27 @@ class Rules {
 
       ids[item.getName()] = map[key];
 
-      item.setId(map[key]);
+      item.setId(map[key] + 1);
     }
 
     return ids;
   }
 
   getStyles() {
-    return this._items.map(rule => rule.getStyles());
+    const result = [];
+    const jaxtapos = {};
+
+    for (let rule, i = 0; rule = this._items[i]; i++) {
+      jaxtapos[rule.getId()] = rule.getStyles();
+    }
+
+    for (let id in jaxtapos) {
+      if (!jaxtapos.hasOwnProperty(id)) continue;
+
+      result.push({ id, values: jaxtapos[id] });
+    }
+
+    return result.sort((a, b) => a.id - b.id);
   }
 }
 

@@ -9,11 +9,22 @@ class Row {
 
     this._size = 0;
 
+    this._styles = null;
     this._collected = null;
 
     this._cells = [];
 
     this.combine();
+  }
+
+  set(values) {
+    if ('styles' in values) {
+      this._styles = values.styles;
+
+      this._cells.forEach(cell => cell.set({ styles: this._styles }));
+    }
+
+    return this;
   }
 
   collect() {
@@ -68,7 +79,7 @@ class Row {
   combine() {
     const collected = this.collect();
 
-    this._cells = collected.map((data, i) => new Cell([this._index, i], data));
+    this._cells = collected.map((data, i) => new Cell([this._index, i], data, this._styles));
   }
 
   getSize() {

@@ -13,8 +13,8 @@ class Document {
     if ('id' in values) this._id = values.id;
     if ('author' in values) this._author = values.author;
     if ('modifier' in values) this._modifier = values.modifier;
-    if ('createDate' in values) this._createDate = values.createDate;
-    if ('modifyDate' in values) this._modifyDate = values.modifyDate;
+    if ('createDate' in values) this._createDate = values.createDate instanceof Date ? values.createDate : new Date(values.createDate);
+    if ('modifyDate' in values) this._modifyDate = values.modifyDate instanceof Date ? values.modifyDate : new Date(values.modifyDate);
 
     return this;
   }
