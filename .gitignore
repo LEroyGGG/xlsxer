@@ -3,3 +3,8 @@ node_modules
 
 *.dev.js
 *.debug.*
+
+*.xml
+*._rels
+*.rels
+*.bin
