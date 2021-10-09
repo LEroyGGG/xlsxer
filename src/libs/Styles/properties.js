@@ -19,9 +19,7 @@ module.exports = {
   'display': require('./properties/display'),
   'font-family': require('./properties/font-family'),
   'font-size': require('./properties/font-size'),
-  'height': require('./properties/height'),
   'position': require('./properties/position'),
   'text-align': require('./properties/text-align'),
   'vertical-align': require('./properties/vertical-align'),
-  'width': require('./properties/width'),
 };
