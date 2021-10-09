@@ -26,6 +26,7 @@ describe("Sheet", () => {
           0
         ],
         "_value": "Title 1",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -36,6 +37,7 @@ describe("Sheet", () => {
           1
         ],
         "_value": "Title 2",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -46,6 +48,7 @@ describe("Sheet", () => {
           2
         ],
         "_value": "Title 3",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -56,6 +59,7 @@ describe("Sheet", () => {
           3
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -66,6 +70,7 @@ describe("Sheet", () => {
           4
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -76,6 +81,7 @@ describe("Sheet", () => {
           5
         ],
         "_value": "Title 4",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -86,11 +92,13 @@ describe("Sheet", () => {
           6
         ],
         "_value": "Title 5",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
       }
     ],
+    "height": 18,
     "spans": "1:7"
   },
   {
@@ -101,6 +109,7 @@ describe("Sheet", () => {
           0
         ],
         "_value": "Row 1 Col 1",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -111,6 +120,7 @@ describe("Sheet", () => {
           1
         ],
         "_value": "Row 1 Col 2",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -121,6 +131,7 @@ describe("Sheet", () => {
           2
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -131,6 +142,7 @@ describe("Sheet", () => {
           3
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -141,6 +153,7 @@ describe("Sheet", () => {
           4
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -151,6 +164,7 @@ describe("Sheet", () => {
           5
         ],
         "_value": "Row 1 Col 3",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -161,6 +175,7 @@ describe("Sheet", () => {
           6
         ],
         "_value": "Row 1 Col 4",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -171,11 +186,13 @@ describe("Sheet", () => {
           7
         ],
         "_value": "Row 1 Col 5",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
       }
     ],
+    "height": 36,
     "spans": "1:8"
   },
   {
@@ -186,6 +203,7 @@ describe("Sheet", () => {
           0
         ],
         "_value": "Row 2 Col 1",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -196,6 +214,7 @@ describe("Sheet", () => {
           1
         ],
         "_value": "Row 2 Col 2",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -206,6 +225,7 @@ describe("Sheet", () => {
           2
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -216,6 +236,7 @@ describe("Sheet", () => {
           3
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -226,6 +247,7 @@ describe("Sheet", () => {
           4
         ],
         "_value": null,
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -236,6 +258,7 @@ describe("Sheet", () => {
           5
         ],
         "_value": "Row 2 Col 3",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -246,6 +269,7 @@ describe("Sheet", () => {
           6
         ],
         "_value": "Row 2 Col 4",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -256,11 +280,13 @@ describe("Sheet", () => {
           7
         ],
         "_value": "Row 2 Col 5",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
       }
     ],
+    "height": 18,
     "spans": "1:8"
   },
   {
@@ -271,6 +297,7 @@ describe("Sheet", () => {
           0
         ],
         "_value": "Row 3 Col 1",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -281,6 +308,7 @@ describe("Sheet", () => {
           1
         ],
         "_value": "Row 3 Col 2",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -291,6 +319,7 @@ describe("Sheet", () => {
           2
         ],
         "_value": "Row 3 Col 3",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -301,6 +330,7 @@ describe("Sheet", () => {
           3
         ],
         "_value": "Row 3 Col 4",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -311,11 +341,13 @@ describe("Sheet", () => {
           4
         ],
         "_value": "Row 3 Col 5",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
       }
     ],
+    "height": 18,
     "spans": "1:5"
   },
   {
@@ -326,6 +358,7 @@ describe("Sheet", () => {
           0
         ],
         "_value": "Row 4 Col 1",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -336,6 +369,7 @@ describe("Sheet", () => {
           1
         ],
         "_value": "Row 4 Col 2",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -346,6 +380,7 @@ describe("Sheet", () => {
           2
         ],
         "_value": "Row 4 Col 3",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -356,6 +391,7 @@ describe("Sheet", () => {
           3
         ],
         "_value": "Row 4 Col 4",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -366,11 +402,13 @@ describe("Sheet", () => {
           4
         ],
         "_value": "Row 4 Col 5",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
       }
     ],
+    "height": 18,
     "spans": "1:5"
   },
   {
@@ -381,6 +419,7 @@ describe("Sheet", () => {
           0
         ],
         "_value": "Row 5 Col 1",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -391,6 +430,7 @@ describe("Sheet", () => {
           1
         ],
         "_value": "Row 5 Col 2",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -401,6 +441,7 @@ describe("Sheet", () => {
           2
         ],
         "_value": "Row 5 Col 3",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -411,6 +452,7 @@ describe("Sheet", () => {
           3
         ],
         "_value": "Row 5 Col 4",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
@@ -421,11 +463,13 @@ describe("Sheet", () => {
           4
         ],
         "_value": "Row 5 Col 5",
+        "_style": undefined,
         "_styles": null,
         "_isShared": false,
         "_sharedId": null
       }
     ],
+    "height": 18,
     "spans": "1:5"
   }
 ];

@@ -9,14 +9,6 @@ describe("Parser", () => {
         ],
         "properties": [
           {
-            "name": "width",
-            "value": "50px"
-          },
-          {
-            "name": "height",
-            "value": "25px"
-          },
-          {
             "name": "display",
             "value": "text"
           },
@@ -46,7 +38,7 @@ describe("Parser", () => {
           },
           {
             "name": "background",
-            "value": "transparent"
+            "value": "none"
           }
         ]
       },
@@ -58,10 +50,6 @@ describe("Parser", () => {
           {
             "name": "position",
             "value": "fixed"
-          },
-          {
-            "name": "height",
-            "value": "36px"
           }
         ]
       },
@@ -87,7 +75,7 @@ describe("Parser", () => {
         ],
         "properties": [
           {
-            "name": "background-color",
+            "name": "background",
             "value": "#8c72b2"
           }
         ]
@@ -98,7 +86,7 @@ describe("Parser", () => {
         ],
         "properties": [
           {
-            "name": "background-color",
+            "name": "background",
             "value": "#46a0df"
           }
         ]
@@ -109,7 +97,7 @@ describe("Parser", () => {
         ],
         "properties": [
           {
-            "name": "background-color",
+            "name": "background",
             "value": "#dfab46"
           }
         ]
@@ -117,12 +105,11 @@ describe("Parser", () => {
       {
         "selectors": [
           "STATE_400",
-          "STATE_500",
           "STATE_ERROR"
         ],
         "properties": [
           {
-            "name": "background-color",
+            "name": "background",
             "value": "#df4654"
           }
         ]
@@ -133,7 +120,7 @@ describe("Parser", () => {
         ],
         "properties": [
           {
-            "name": "background-color",
+            "name": "background",
             "value": "#ac0000"
           }
         ]
@@ -175,8 +162,6 @@ describe("Parser", () => {
   test("Parser.readInline", async () => {
     const styles = `
       ::defaults {
-        width: 50px;
-        height: 25px;
         display: text;
         font-family: 'Calibri';
         vertical-align: middle;
@@ -192,14 +177,6 @@ describe("Parser", () => {
           "::defaults"
         ],
         "properties": [
-          {
-            "name": "width",
-            "value": "50px"
-          },
-          {
-            "name": "height",
-            "value": "25px"
-          },
           {
             "name": "display",
             "value": "text"

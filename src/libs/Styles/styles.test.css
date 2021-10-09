@@ -8,7 +8,7 @@
   /* test comment */
   /* color: red; */
   border: none;
-  background: transparent;
+  background: none;
 }
 
 ::row(1) {
@@ -20,23 +20,23 @@ STATE_100, STATE_200, STATE_300, STATE_400, STATE_500, STATE_ERROR {
 }
 
 STATE_100 {
-  background-color: #8c72b2;
+  background: #8c72b2;
 }
 
 STATE_200 {
-  background-color: #46a0df;
+  background: #46a0df;
 }
 
 STATE_300 {
-  background-color: #dfab46;
+  background: #dfab46;
 }
 
 STATE_400, STATE_ERROR {
-  background-color: #df4654;
+  background: #df4654;
 }
 
 STATE_ERROR {
-  background-color: #ac0000;
+  background: #ac0000;
 }
 
 URL {
