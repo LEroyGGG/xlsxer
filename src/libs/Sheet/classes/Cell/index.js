@@ -46,7 +46,7 @@ class Cell {
   }
 
   getStyle() {
-    return this._styles.getIdByName(this._style) || this._styles.getIdByName(NAME_DEFAULT);
+    return this._styles ? this._styles.getIdByName(this._style) || this._styles.getIdByName(NAME_DEFAULT) : 2;
   }
 }
 
