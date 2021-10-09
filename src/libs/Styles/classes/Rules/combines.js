@@ -11,6 +11,6 @@ self.border = {
 
 self.background = { 'background-color': 'fill', 'background-style': 'pattern' };
 
-self.align = { 'text-align': 'horizontal', 'verical-align': 'verical' };
+self.align = { 'text-align': 'horizontal', 'vertical-align': 'vertical' };
 
 module.exports = self;
