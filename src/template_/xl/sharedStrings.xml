@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<sst count="{{links.length}}" uniqueCount="{{links.length}}" xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
-	{{#each links}}
-		<si><t>{{this}}</t></si>
-	{{/each}}
-</sst>
