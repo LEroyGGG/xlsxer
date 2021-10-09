@@ -98,15 +98,15 @@ class Xlsx {
   }
 
   async build() {
-    return this._result = new Builder(this).render().zip();
-  }
-
-  async save(...dest) {
     await this.styles.ready();
 
     this.styles.combine();
 
-    const data = await this.build();
+    return this._result = new Builder(this).render().zip();
+  }
+
+  async save(...dest) {
+    const data = this._result || await this.build();
 
     dest = path.resolve(...dest);
 
