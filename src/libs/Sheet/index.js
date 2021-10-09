@@ -6,11 +6,17 @@ const Locks = require('./classes/Locks');
 const n2l = require('../../utils/num2letter');
 const { isString, isObject } = require('../../utils/types');
 
+const WIDTH_COMPENSATOR = 0.78;
+const HEIGHT_COMPENSATOR = 0;
+
 class Sheet {
   constructor(name, data) {
     this._id = null;
     this._idx = null;
     this._xlId = null;
+
+    this._cellSize = [20, 18];
+    this._columnSize = [];
 
     this._locks = new Locks();
 
@@ -42,6 +48,10 @@ class Sheet {
     if ('id' in values) this._id = values.id;
     if ('idx' in values) this._idx = values.idx;
     if ('xlId' in values) this._xlId = values.xlId;
+
+    if ('cellSize' in values) this._cellSize = values.cellSize;
+    if ('columnSize' in values) this._columnSize = values.columnSize;
+
     if ('styles' in values) {
       this._styles = values.styles;
 
@@ -65,6 +75,36 @@ class Sheet {
 
   getName() {
     return this._name;
+  }
+
+  getCellSize() {
+    let [width, height] = this._cellSize;
+
+    width = (width + WIDTH_COMPENSATOR).toFixed(2);
+    height = (height + HEIGHT_COMPENSATOR).toFixed(2);
+
+    return [width, height];
+  }
+
+  getColumnSize() {
+    const sizes = this._columnSize;
+
+    const groups = [];
+
+    for (let size, i = 0; size = sizes[i];) {
+      let from = i + 1;
+      let to = sizes.findIndex((v, j) => i <= j && v !== size);
+
+      if (to === -1) to = sizes.length;
+
+      const width = (size + WIDTH_COMPENSATOR).toFixed(2);
+
+      groups.push({ from, to, width });
+
+      i = to;
+    }
+
+    return groups;
   }
 
   getStyles() {

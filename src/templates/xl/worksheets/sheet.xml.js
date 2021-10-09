@@ -1,12 +1,20 @@
-const createColsList = (sheet, styles) => {
+const setupDefaultCellSize = sheet => {
+  const [width, height] = sheet.getCellSize();
+
+  return '<sheetFormatPr defaultColWidth="' + width + '" defaultRowHeight="' + height + '" customHeight="1" x14ac:dyDescent="0.25"/>';
+};
+
+const createColsList = sheet => {
+  const groups = sheet.getColumnSize();
+
+  if (!groups.length) return '';
+
   let xml = '';
 
   xml += '<cols>';
 
-  const cols = styles.getColsWidth(1, 5);
-
-  for (let col, i = 0; col = cols[i]; i++) {
-    xml += '<col customWidth="1" max="' + col.to + '" min="' + col.from + '" width="' + col.width + '"/>';
+  for (let item, i = 0; item = groups[i]; i++) {
+    xml += '<col customWidth="1" max="' + item.to + '" min="' + item.from + '" width="' + item.width + '"/>';
   }
 
   xml += '</cols>';
@@ -75,9 +83,9 @@ module.exports = function sheet(xlsx, sheet) {
   xml +=     '</sheetView>';
   xml +=   '</sheetViews>';
 
-  xml +=   '<sheetFormatPr defaultRowHeight="15" x14ac:dyDescent="0.25"/>';
+  xml += setupDefaultCellSize(sheet);
 
-  xml += createColsList(sheet, xlsx.styles);
+  xml += createColsList(sheet);
   xml += createDataList(sheet);
 
   xml += createMergeCells(sheet);
