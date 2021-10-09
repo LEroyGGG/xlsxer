@@ -8,14 +8,14 @@ const run = async () => {
 
   // console.log(styles._rules);
 
-  // console.log(JSON.stringify(styles.collect(), null, '  '));
+  console.log(JSON.stringify(styles.collect(), null, '  '));
 
   const { ids, combines } = styles.combine();
 
   // console.log(JSON.stringify({ ids, combines }, null, '  '));
 
   styles._rules._items.forEach(rule => {
-    // console.log(rule.getName() + ' :: ' + rule.getId() + ' :: ' + JSON.stringify(rule._styles));
+    console.log(rule.getName() + ' :: ' + rule.getId() + ' :: ' + JSON.stringify(rule._styles));
   });
 };
 

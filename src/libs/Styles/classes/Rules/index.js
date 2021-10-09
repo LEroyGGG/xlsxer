@@ -8,8 +8,12 @@ class Rules {
     this._items = [];
     this._styles = {};
 
+    this._presetFisrt = new Rule(Rules.SELECTOR_EXCEL_PRESET_FIRST);
+    this._presetSecond = new Rule(Rules.SELECTOR_EXCEL_PRESET_SECOND);
     this._defaults = new Rule(Rules.SELECTOR_DEFAULT);
 
+    this._items.push(this._presetFisrt);
+    this._items.push(this._presetSecond);
     this._items.push(this._defaults);
   }
 
@@ -83,7 +87,7 @@ class Rules {
 
       ids[item.getName()] = map[key];
 
-      item.setId(map[key] + 1);
+      item.setId(map[key]);
     }
 
     return ids;
@@ -108,5 +112,7 @@ class Rules {
 }
 
 Rules.SELECTOR_DEFAULT = '::defaults';
+Rules.SELECTOR_EXCEL_PRESET_FIRST = 'EXCEL_PRESET_FIRST';
+Rules.SELECTOR_EXCEL_PRESET_SECOND = 'EXCEL_PRESET_SECOND';
 
 module.exports = Rules;

@@ -34,7 +34,7 @@ STATE_300 {
   background-color: #dfab46;
 }
 
-STATE_400, STATE_500, STATE_ERROR {
+STATE_400, STATE_ERROR {
   background-color: #df4654;
 }
 

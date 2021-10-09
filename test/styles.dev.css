@@ -6,11 +6,12 @@
   vertical-align: middle;
   text-align: center;
   font-size: 11px;
-  color: #444;
+  /* color: #444; */
   /* test comment */
-  /* color: red; */
+  color: red;
   border: none;
-  background: none;
+  background: #009;
+  /* background: none; */
 }
 
 ::row(1) {
@@ -40,7 +41,7 @@ STATE_300 {
   background: #dfab46;
 }
 
-STATE_400, STATE_500, STATE_ERROR {
+STATE_400, STATE_ERROR {
   background: #df4654;
 }
 

@@ -1,7 +1,21 @@
 module.exports = `
+  EXCEL_PRESET_FIRST {
+    font-family: 'Calibri';
+    font-size: 11px;
+    color: #000;
+    border: none;
+    background: none;
+  }
+
+  EXCEL_PRESET_SECOND {
+    font-family: 'Calibri';
+    font-size: 11px;
+    color: #000;
+    border: none;
+    background: gray125;
+  }
+
   ::defaults {
-    width: 50px;
-    height: 26px;
     display: text;
     font-family: 'Calibri';
     vertical-align: middle;
