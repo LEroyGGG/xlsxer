@@ -6,8 +6,7 @@ const Locks = require('./classes/Locks');
 const n2l = require('../../utils/num2letter');
 const { isString, isObject } = require('../../utils/types');
 
-const WIDTH_COMPENSATOR = 0.78;
-const HEIGHT_COMPENSATOR = 0;
+const { WIDTH_COMPENSATOR, HEIGHT_COMPENSATOR } = require('./constants');
 
 class Sheet {
   constructor(name, data) {
@@ -33,6 +32,8 @@ class Sheet {
       const values = isObject(data[i]) ? data[i].values : data[i];
       const settings = isObject(data[i]) ? data[i].settings : {};
 
+      settings.height = settings.height || this._cellSize[1];
+
       for (let j = 0, j_len = values.length; j < j_len; j++) {
         const value = values[j];
 
@@ -49,7 +50,12 @@ class Sheet {
     if ('idx' in values) this._idx = values.idx;
     if ('xlId' in values) this._xlId = values.xlId;
 
-    if ('cellSize' in values) this._cellSize = values.cellSize;
+    if ('cellSize' in values) {
+      this._cellSize = values.cellSize;
+
+      this._rows.forEach(row => row.set({ height: values.cellSize[1] }));
+    }
+
     if ('columnSize' in values) this._columnSize = values.columnSize;
 
     if ('styles' in values) {

@@ -1,5 +1,7 @@
 const Cell = require('../Cell');
 
+const { HEIGHT_COMPENSATOR } = require('../../constants');
+
 class Row {
   constructor(i, data, settings, locks) {
     this._index = i;
@@ -22,6 +24,10 @@ class Row {
       this._styles = values.styles;
 
       this._cells.forEach(cell => cell.set({ styles: this._styles }));
+    }
+
+    if ('height' in values) {
+      this._settings.height = values.height;
     }
 
     return this;
@@ -89,8 +95,9 @@ class Row {
   getData() {
     const cells = this._cells;
     const spans = '1:' + this._size;
+    const height = this._settings && this._settings.height ? this._settings.height + HEIGHT_COMPENSATOR : null;
 
-    return { cells, spans };
+    return { cells, spans, height };
   }
 }
 
