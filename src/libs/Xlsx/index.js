@@ -97,18 +97,6 @@ class Xlsx {
     }
   }
 
-  // collect() {
-  //   return this.sheets.map(sheet => sheet.collect());
-  // }
-  //
-  // combine() {
-  //   const collected = this.collect();
-  //
-  //   this.repack(collected);
-  //
-  //   return collected;
-  // }
-
   async build() {
     return this._result = new Builder(this).render().zip();
   }
