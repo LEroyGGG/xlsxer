@@ -5,7 +5,14 @@ const self = {};
 const NONE = 'none';
 
 // TODO: Add other border styles
-const list = [NONE, 'thick', 'medium', 'thin', 'double', 'mediumDashed'];
+const list = [
+  NONE,
+  'thin', 'medium', 'thick',
+  'dotted', 'dashed', 'hair', 'double',
+  'dashDotDot', 'mediumDashDotDot',
+  'dashDot', 'slantDashDot', 'mediumDashDot',
+  'mediumDashed',
+];
 
 const reg_clean_types = new RegExp('\\b(' + list.join('|') + ')\\b', 'ig');
 
