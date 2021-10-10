@@ -22,4 +22,5 @@ module.exports = {
   'position': require('./properties/position'),
   'text-align': require('./properties/text-align'),
   'vertical-align': require('./properties/vertical-align'),
+  'white-space': require('./properties/white-space'),
 };

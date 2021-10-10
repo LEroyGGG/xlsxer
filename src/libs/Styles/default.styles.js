@@ -19,6 +19,7 @@ module.exports = `
     display: text;
     font-family: 'Calibri';
     vertical-align: middle;
+    white-space: nowrap;
     text-align: left;
     font-size: 11px;
     color: #000;

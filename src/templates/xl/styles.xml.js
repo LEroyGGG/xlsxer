@@ -93,11 +93,11 @@ const createStylesList = xlsx => {
   for (let style, i = 0; style = styles[i]; i++) {
     const { font, border, background, align } = style.values;
 
-    const { horizontal, vertical } = aligns[align];
+    const { horizontal, vertical, wrapText } = aligns[align];
 
     if (horizontal || vertical) {
       xml += '<xf applyAlignment="1"' + (border ? ' applyBorder="1" borderId="' + border + '"' : '') + ' fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="0">';
-      xml +=   '<alignment' + (vertical ? ' vertical="' + vertical + '"': '') + (horizontal ? ' horizontal="' + horizontal + '"' : '') +'/>';
+      xml +=   '<alignment' + (vertical ? ' vertical="' + vertical + '"': '') + (horizontal ? ' horizontal="' + horizontal + '"' : '') + (wrapText ? '  wrapText="1"' : '') + '/>';
       xml += '</xf>';
     } else {
       xml += '<xf' + (border ? ' applyBorder="1" borderId="' + border + '"' : '') + ' fillId="' + background + '" fontId="' + font + '" numFmtId="0" xfId="0" />';

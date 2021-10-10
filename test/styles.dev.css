@@ -17,6 +17,7 @@
 }
 
 TITLE {
+  white-space: multiline;
   color: #fff;
   background: #9b1f80;
 }
