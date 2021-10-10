@@ -31,13 +31,13 @@ const createFillsList = xlsx => {
   for (let fill, i = 0; fill = fills[i]; i++) {
     xml += '<fill>';
 
-    if (fill.pattern === 'solid') {
+    if (fill.pattern === 'none') {
+      xml += '<patternFill patternType="' + fill.pattern + '"/>';
+    } else {
       xml += '<patternFill patternType="' + fill.pattern + '">';
       xml +=   '<fgColor rgb="' + fill.fill + '"/>';
       xml +=   '<bgColor indexed="64"/>';
       xml += '</patternFill>';
-    } else {
-      xml += '<patternFill patternType="' + fill.pattern + '"/>';
     }
 
     xml += '</fill>';

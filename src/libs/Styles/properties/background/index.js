@@ -1,21 +1,26 @@
 const Color = require('../../../../utils/color');
 
 const NONE = 'none';
-const GRAY = 'gray125';
+
+const COLOR_DEFAULT = '#000';
 
 // TODO: Add other background styles
-const list = [NONE, GRAY, 'solid'];
+const list = [
+  NONE,
+  'solid', 'darkGray', 'mediumGray', 'lightGray', 'gray125', 'gray0625',
+  'darkUp', 'darkDown', 'darkHorizontal', 'darkVertical', 'darkGrid', 'darkTrellis',
+  'lightHorizontal', 'lightVertical', 'lightDown', 'lightUp', 'lightGrid', 'lightTrellis'];
 
 const reg_clean_types = new RegExp('\\b(' + list.join('|') + ')\\b', 'ig');
 
 const self = {};
 
 self.validate = value => {
-  if (value === NONE || value === GRAY) return true;
+  if (value === NONE) return true;
 
   let cleaned = value.replace(reg_clean_types, '').trim();
 
-  const color = new Color(cleaned);
+  const color = new Color(cleaned || COLOR_DEFAULT);
 
   if (!color.isValid) return false;
 
@@ -25,13 +30,13 @@ self.validate = value => {
 };
 
 self.transform = value => {
-  let color = (new Color('#fff')).hexExcel();
+  let color = (new Color(COLOR_DEFAULT)).hexExcel();
   let style = value;
 
-  if (value !== NONE && value !== GRAY) {
+  if (value !== NONE) {
     const cleaned = value.replace(reg_clean_types, '').trim();
 
-    color = (new Color(cleaned)).hexExcel();
+    color = (new Color(cleaned || COLOR_DEFAULT)).hexExcel();
     style = value.replace(cleaned, '').trim() || 'solid';
   }
 

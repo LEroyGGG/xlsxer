@@ -3,7 +3,7 @@ const Styles = require('.');
 describe("Styles", () => {
   const data = {
    "EXCEL_PRESET_FIRST": {
-     "background-color": "FFFFFFFF",
+     "background-color": "FF000000",
      "background-style": "none",
      "border-bottom-color": null,
      "border-bottom-style": null,
@@ -18,7 +18,7 @@ describe("Styles", () => {
      "font-size": 11,
    },
    "EXCEL_PRESET_SECOND": {
-     "background-color": "FFFFFFFF",
+     "background-color": "FF000000",
      "background-style": "gray125",
      "border-bottom-color": null,
      "border-bottom-style": null,
@@ -48,7 +48,7 @@ describe("Styles", () => {
       "border-right-style": null,
       "border-top-color": null,
       "border-top-style": null,
-      "background-color": "FFFFFFFF",
+      "background-color": "FF000000",
       "background-style": "none",
     },
     "::row(1)": {
@@ -67,7 +67,7 @@ describe("Styles", () => {
       "border-left-style": null,
       "border-right-style": null,
       "border-bottom-style": null,
-      "background-color": "FFFFFFFF",
+      "background-color": "FF000000",
       "background-style": "none",
       "position": "fixed",
     },
@@ -163,7 +163,7 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FFFFFFFF",
+      "background-color": "FF000000",
       "background-style": "none",
     },
     "STATE_ERROR": {
@@ -201,7 +201,7 @@ describe("Styles", () => {
       "border-left-style": "thick",
       "border-right-style": "thick",
       "border-bottom-style": "thick",
-      "background-color": "FFFFFFFF",
+      "background-color": "FF000000",
       "background-style": "none",
     },
     "EMPTY": {
@@ -220,7 +220,7 @@ describe("Styles", () => {
       "border-left-style": null,
       "border-right-style": null,
       "border-bottom-style": null,
-      "background-color": "FFFFFFFF",
+      "background-color": "FF000000",
       "background-style": "none",
     }
   };

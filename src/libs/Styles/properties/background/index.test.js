@@ -13,7 +13,7 @@ describe("Styles: background property", () => {
   });
 
   test("transform", () => {
-    expect(self.transform('none')).toEqual({ 'background-color': 'FFFFFFFF', 'background-style': 'none' });
+    expect(self.transform('none')).toEqual({ 'background-color': 'FF000000', 'background-style': 'none' });
     expect(self.transform('yellowgreen')).toEqual({ 'background-color': 'FF9ACD32', 'background-style': 'solid' });
     expect(self.transform('rgb(154, 205, 50)')).toEqual({ 'background-color': 'FF9ACD32', 'background-style': 'solid' });
   });
