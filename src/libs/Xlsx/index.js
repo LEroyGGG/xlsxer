@@ -105,6 +105,10 @@ class Xlsx {
     return this._result = new Builder(this).render().zip();
   }
 
+  file() {
+    return this._result || await this.build();
+  }
+
   async save(...dest) {
     const data = this._result || await this.build();
 
