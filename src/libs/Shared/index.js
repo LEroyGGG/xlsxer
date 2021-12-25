@@ -38,7 +38,17 @@ class Shared {
   }
 
   getValues() {
-    return this._values.slice();
+    const reg = /[<&>'"]/g;
+
+    const replaces = {
+      '<': '&lt;',
+      '&': '&amp;',
+      '>': '&gt;',
+      "'": '&apos;',
+      '"': '&quot;',
+    };
+
+    return this._values.map(value => value.replace(reg, m => replaces[m] || m));
   }
 }
 
