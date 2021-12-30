@@ -32,14 +32,18 @@ const createDataList = sheet => {
   for (let row, i = 0; row = rows[i]; i++) {
     const { height, spans, cells } = row;
 
+    if (!cells.length) continue;
+
     xml += '<row' + (height ? ' customHeight="1" ht="' + height + '"' : '') + ' r="' + (i + 1) + '"' + (spans ? ' spans="' + spans + '"' : '') + ' x14ac:dyDescent="0.25">';
 
     for (let cell, j = 0; cell = cells[j]; j++) {
       const style = cell.getStyle();
       const value = cell.getValue();
 
+      if (value == null || value === '') continue;
+
       xml += '<c r="' + cell.getName() + '"' + (style ? ' s="' + style + '"': '') + (cell.isShared() ? ' t="s"' : '') + '>';
-      xml +=   '<v>' + (value != null ? value : '') + '</v>';
+      xml +=   '<v>' + value + '</v>';
       xml += '</c>';
     }
 
